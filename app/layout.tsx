@@ -5,12 +5,12 @@ import DesktopNavbar from "@/components/DesktopNavbar";
 const formaDJR = localFont({
   src: [
     {
-      path: "./fonts/FormaDJRMicro-Regular-Testing.ttf",
+      path: "../public/fonts/FormaDJRMicro-Regular-Testing.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/FormaDJRMicro-Medium-Testing.ttf",
+      path: "../public/fonts/FormaDJRMicro-Medium-Testing.ttf",
       weight: "500",
       style: "normal",
     },
@@ -21,12 +21,12 @@ const formaDJR = localFont({
 const neuePlak = localFont({
   src: [
     {
-      path: "./fonts/Neue Plak Regular.ttf",
+      path: "../public/fonts/Neue Plak Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/Neue Plak Condensed Bold.ttf",
+      path: "../public/fonts/Neue Plak Condensed Bold.ttf",
       weight: "700",
       style: "normal",
     },
@@ -43,14 +43,12 @@ export default function RootLayout({
     <html lang="en" className={`${formaDJR.variable} ${neuePlak.variable}`}>
       <body className={`${formaDJR.className} overflow-hidden`}>
         <div className="relative h-screen overflow-hidden">
-          <div className="absolute top-15 left-10 z-10">
+          <div className="absolute left-15 z-10 h-full bg-(--color-accent)">
             <DesktopNavbar />
           </div>
-            <main className="flex-1 flex items-center justify-center bg-(--color-secondary) m-15 mb-10 p-10 h-screen">            
-            <div>
-              {children}
-            </div>
-            </main>
+          <main className="bg-(--color-secondary) mx-15 mb-10 px-20 h-screen">
+            <div>{children}</div>
+          </main>
         </div>
       </body>
     </html>
