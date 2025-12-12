@@ -43,10 +43,11 @@ export default function RootLayout({
     <html lang="en" className={`${formaDJR.variable} ${neuePlak.variable}`}>
       <body className={`${formaDJR.className} overflow-hidden`}>
         <div className="relative h-screen overflow-hidden">
-          <div className="absolute left-15 z-10 h-full bg-(--color-accent)">
+          {/* Desktop Navbar - Hidden on mobile */}
+          <div className="hidden md:block absolute left-15 z-10 h-full bg-[var(--color-accent)]">
             <DesktopNavbar />
           </div>
-          <main className="bg-(--color-secondary) mx-15 mb-10 px-20 h-screen">
+          <main className="bg-[var(--color-secondary)] md:mx-15 md:mb-10 md:px-20 h-screen">
             <div>{children}</div>
           </main>
         </div>
