@@ -135,7 +135,7 @@ export default function Home() {
                 Wijayagunarathna
               </h1>
             </div>
-            <div className="text-3xl font-semibold max-w-lg text-[var(--color-accent)] mb-10">
+            <div className="text-3xl font-semibold max-w-lg text-(--color-accent) mb-10">
               <RoleType />
             </div>
             <div className="text-lg max-w-lg">
@@ -221,7 +221,7 @@ export default function Home() {
                 Wijayagunarathna
               </h1>
             </div>
-            <div className="text-3xl font-semibold max-w-lg text-[var(--color-accent)] mb-10">
+            <div className="text-3xl font-semibold max-w-lg text-(--color-accent) mb-10">
               <RoleType />
             </div>
             <div className=" flex flex-col gap-10">
