@@ -2,6 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import "./globals.css";
 
+import RoleType from "@/components/RoleType";
+
 export default function Home() {
   const leftColumnRef = useRef<HTMLDivElement>(null);
   const mobileColumnRef = useRef<HTMLDivElement>(null);
@@ -124,8 +126,8 @@ export default function Home() {
           `}</style>
 
           {/* Section 1 - Name */}
-          <div className="min-h-screen flex flex-col justify-center gap-8">
-            <div>
+          <div className="min-h-screen flex flex-col justify-center gap-5">
+            <div className="text-4xl font-bold tracking-wider">
               <h1 className="text-9xl font-bold tracking-wider text-(--color-primary)">
                 Nehan
               </h1>
@@ -133,14 +135,17 @@ export default function Home() {
                 Wijayagunarathna
               </h1>
             </div>
+            <div className="text-3xl font-semibold max-w-lg text-[var(--color-accent)] mb-10">
+              <RoleType />
+            </div>
+            <div className="text-lg max-w-lg">
+              An Information Technology undergraduate skilled in Devops
+              engineering. Experienced in building user-focused applications
+              through collaborative projects, with strong attention to detail
+              and a focus on scalable solutions. Proven ability to contribute
+              effectively in team settings.
+            </div>
             <div>
-              <p className="text-lg mb-4">
-                An Information Technology undergraduate skilled in Devops
-                engineering. Experienced in building user-focused applications
-                through collaborative projects, with strong attention to detail
-                and a focus on scalable solutions. Proven ability to contribute
-                effectively in team settings
-              </p>
               <a
                 href="https://drive.google.com/drive/folders/18A-tg5YCdFeTAMxAyIPGn-FeYkGgYbKS?usp=sharing"
                 target="_blank"
@@ -154,7 +159,10 @@ export default function Home() {
 
           {/* Section 2 - Quote */}
           <div className="min-h-screen flex items-center justify-center">
-            <blockquote className="text-4xl font-bold text-(--color-foreground) italic">
+            <blockquote
+              className="text-4xl font-bold text-(--color-foreground) italic border-l-3 pl-6"
+              style={{ borderLeftColor: "var(--color-accent)" }}
+            >
               “Never forget what you are. The world will not. Wear it like
               armor”
               <p className="text-xl text-(--color-primary)">
@@ -204,14 +212,17 @@ export default function Home() {
           `}</style>
 
           {/* Section 1 - Name + Description + CV */}
-          <div className="min-h-screen flex flex-col px-6 py-20 relative z-20 pointer-events-auto gap-10">
+          <div className="min-h-screen flex flex-col px-6 py-20 relative z-20 pointer-events-auto gap-5">
             <div className="mb-8">
               <h1 className="text-7xl font-bold tracking-wider text-(--color-primary) mb-2">
                 Nehan
               </h1>
-              <h1 className="text-5xl font-bold tracking-wider text-(--color-primary) mb-6">
+              <h1 className="text-5xl font-bold tracking-wider text-(--color-primary)">
                 Wijayagunarathna
               </h1>
+            </div>
+            <div className="text-3xl font-semibold max-w-lg text-[var(--color-accent)] mb-10">
+              <RoleType />
             </div>
             <div className=" flex flex-col gap-10">
               <p className="text-base mb-6">
