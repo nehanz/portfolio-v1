@@ -1,11 +1,61 @@
+"use client";
 import * as React from "react";
 import {
   HoverCard,
   HoverCardTrigger,
   HoverCardContent,
 } from "@/components/ui/hover-card";
+import Image from "next/image";
+import certificate1 from "@/public/images/certificate1.png";
+import certificate2 from "@/public/images/certificate2.png";
+import certificate3 from "@/public/images/certificate3.png";
 
-const educationDetails = [
+// Types
+interface TimelineItemData {
+  title: string;
+  subtitle: string;
+  link: string;
+  duration: string;
+  details?: React.ReactNode;
+}
+
+interface EducationItem {
+  course: string;
+  institution: string;
+  link: string;
+  duration: string;
+  details: React.ReactNode;
+}
+
+interface ExperienceItem {
+  role: string;
+  organization: string;
+  link: string;
+  duration: string;
+  details: React.ReactNode;
+}
+
+interface HobbyHoverCardProps {
+  triggerText: string;
+  title: string;
+  items: string[];
+}
+
+interface TimelineItemProps {
+  title: string;
+  subtitle: string;
+  link: string;
+  duration: string;
+  details?: React.ReactNode;
+}
+
+interface SectionProps {
+  title: string;
+  items: Array<EducationItem | ExperienceItem>;
+  type: "education" | "experience";
+}
+
+const EDUCATION_DETAILS: EducationItem[] = [
   {
     course: "B.Sc. (Hons.) in Information Technology",
     institution: "University of Moratuwa",
@@ -13,7 +63,7 @@ const educationDetails = [
     duration: "2024 - Present",
     details: (
       <div className="text-justify">
-        I have a CGPA of 4.00/4.00. I’m involved in Badminton and IEEE, and I
+        I have a CGPA of 4.00/4.00. I'm involved in Badminton and IEEE, and I
         received Dean's List recognition for my performance in both L1S1 and
         L2S1.
       </div>
@@ -46,7 +96,7 @@ const educationDetails = [
   },
 ];
 
-const experienceDetails = [
+const EXPERIENCE_DETAILS: ExperienceItem[] = [
   {
     role: "Team Member - IT Avenue",
     organization: "Rotaract Club of University of Moratuwa",
@@ -57,7 +107,7 @@ const experienceDetails = [
         As a member of the Rotaract Club, I contributed to various projects,
         including software development, server migrations, and other
         tech-related tasks, helping improve club operations and support
-        community initiatives
+        community initiatives.
       </div>
     ),
   },
@@ -77,14 +127,29 @@ const experienceDetails = [
   },
 ];
 
-interface TimelineItemProps {
-  title: string;
-  subtitle: string;
-  link: string;
-  duration: string;
-  details?: string;
-  isLast?: boolean;
-}
+const CERTIFICATION_DETAILS = [
+  {
+    name: "AWS Certified Cloud Practitioner",
+    publisher: "Amazon Web Services",
+    link: "https://skillbuilder.aws/learn/94T2BEN85A/aws-cloud-practitioner-essentials/8D79F3AVR7",
+    imageurl: certificate1,
+  },
+  {
+    name: "CI/CD",
+    publisher: "IBM",
+    link: "https://www.credly.com/badges/377eb8cb-b0bc-48cc-9dae-c4b89721451f/public_url",
+    imageurl: certificate2,
+  },
+  {
+    name: "Linux Commands & Shell Scripting",
+    publisher: "IBM",
+    link: "https://www.credly.com/badges/a5e0953f-a142-4fb0-9c8a-ce00e614c712/public_url",
+    imageurl: certificate3,
+  },
+];
+
+const TV_SHOWS = ["GOT", "Dark", "The Night Of", "The Outsider"];
+const VIDEO_GAMES = ["COD MW II (2009)", "GTA V", "Crysis 2", "Hot Pursuit 2"];
 
 const TimelineItem: React.FC<TimelineItemProps> = ({
   title,
@@ -92,22 +157,21 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
   link,
   duration,
   details,
-  isLast = false,
 }) => {
   return (
     <div className="pb-4 border-b border-white/10">
       {details ? (
         <HoverCard openDelay={150} closeDelay={200}>
           <HoverCardTrigger asChild>
-            <h3 className="text-2xl font-semibold">{title}</h3>
+            <h3 className="text-2xl font-semibold cursor-pointer hover:opacity-80 transition-opacity">
+              {title}
+            </h3>
           </HoverCardTrigger>
           <HoverCardContent className="w-80 bg-[var(--color-accent)] border-white/10">
-            <div className="flex justify-between gap-4">
-              <div className="space-y-1">
-          <p className="text-sm text-[var(--color-foreground)]">
-            {details}
-          </p>
-              </div>
+            <div className="space-y-1">
+              <p className="text-sm text-[var(--color-foreground)]">
+                {details}
+              </p>
             </div>
           </HoverCardContent>
         </HoverCard>
@@ -129,50 +193,47 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 
 const StatsBox: React.FC = () => {
   return (
-    <div className="relative w-fit flex justify-center items-center mx-auto mt-25 mb-25">
-      <div className="absolute top-2 left-2 w-full h-full bg-[var(--color-primary)] z-0"></div>
+    <div className="relative w-fit mx-auto my-25">
+      <div className="absolute top-2 left-2 w-full h-full bg-[var(--color-primary)] z-0" />
 
       <div className="relative flex flex-row gap-12 bg-[var(--color-accent)] text-[var(--color-foreground)] px-3 py-10 w-fit z-10 shadow-lg">
-        <div className="flex flex-col items-center mx-4">
-          <div className="flex flex-row items-center">
-            <div className="text-[var(--color-primary)] text-5xl font-extrabold mb-1 font-mono">
-              3+
-            </div>
-            <div className="text-base font-medium opacity-80 text-center ml-2">
-              Years of coding experience
-            </div>
-          </div>
-          <div className="mt-2 text-sm italic opacity-30 text-center">
-            Developing solid programming skills through continuous learning
-          </div>
-        </div>
+        <StatItem
+          value="3+"
+          label="Years of coding experience"
+          description="Developing solid programming skills through continuous learning"
+        />
 
         <div className="w-px bg-white/30 self-stretch" />
 
-        <div className="flex flex-col items-center mx-4">
-          <div className="flex flex-row items-center">
-            <div className="text-[var(--color-primary)] text-5xl font-extrabold mb-1 font-mono">
-              5+
-            </div>
-            <div className="text-base font-medium opacity-80 text-center ml-2">
-              Projects completed
-            </div>
-          </div>
-          <div className="mt-2 text-sm italic opacity-30 text-center">
-            Building reliable and scalable solutions through hands-on
-            development
-          </div>
-        </div>
+        <StatItem
+          value="5+"
+          label="Projects completed"
+          description="Building reliable and scalable solutions through hands-on development"
+        />
       </div>
     </div>
   );
 };
 
-interface HobbyHoverCardProps {
-  triggerText: string;
-  title: string;
-  items: string[];
-}
+const StatItem: React.FC<{
+  value: string;
+  label: string;
+  description: string;
+}> = ({ value, label, description }) => (
+  <div className="flex flex-col items-center mx-4">
+    <div className="flex flex-row items-center">
+      <div className="text-[var(--color-primary)] text-5xl font-extrabold mb-1 font-mono">
+        {value}
+      </div>
+      <div className="text-base font-medium opacity-80 text-center ml-2">
+        {label}
+      </div>
+    </div>
+    <div className="mt-2 text-sm italic opacity-30 text-center">
+      {description}
+    </div>
+  </div>
+);
 
 const HobbyHoverCard: React.FC<HobbyHoverCardProps> = ({
   triggerText,
@@ -191,53 +252,47 @@ const HobbyHoverCard: React.FC<HobbyHoverCardProps> = ({
         </span>
       </HoverCardTrigger>
       <HoverCardContent className="w-80 bg-[var(--color-accent)] border-white/10">
-        <div className="flex justify-between gap-4">
-          <div className="space-y-1">
-            <h4 className="text-md text-[var(--color-foreground)]">{title}</h4>
-            <ul className="list-disc list-inside text-xs text-[var(--color-foreground)]">
-              {items.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </div>
+        <div className="space-y-1">
+          <h4 className="text-md text-[var(--color-foreground)]">{title}</h4>
+          <ul className="list-disc list-inside text-xs text-[var(--color-foreground)]">
+            {items.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
         </div>
       </HoverCardContent>
     </HoverCard>
   );
 };
 
-interface SectionProps {
-  title: string;
-  items: Array<{
-    course?: string;
-    role?: string;
-    institution?: string;
-    organization?: string;
-    link: string;
-    duration: string;
-  }>;
-  type: "education" | "experience";
-}
+const SectionExperience: React.FC<SectionProps> = ({ title, items, type }) => {
+  const getTimelineItemData = (
+    item: EducationItem | ExperienceItem
+  ): TimelineItemData => ({
+    title:
+      type === "education"
+        ? (item as EducationItem).course
+        : (item as ExperienceItem).role,
+    subtitle:
+      type === "education"
+        ? (item as EducationItem).institution
+        : (item as ExperienceItem).organization,
+    link: item.link,
+    duration: item.duration,
+    details: item.details,
+  });
 
-const Section: React.FC<SectionProps> = ({ title, items, type }) => {
   return (
     <div className="space-y-6">
-      <h2 className="text-5xl font-bold text-[var(--color-primary)] mb-15">
+      <h2 className="text-4xl font-bold text-[var(--color-primary)] mb-10">
         {title}
       </h2>
 
       <div className="space-y-4">
         {items.map((item, index) => (
           <TimelineItem
-            key={index}
-            title={type === "education" ? item.course! : item.role!}
-            subtitle={
-              type === "education" ? item.institution! : item.organization!
-            }
-            link={item.link}
-            duration={item.duration}
-            details={(item as any).details}
-            isLast={index === items.length - 1}
+            key={`${type}-${index}`}
+            {...getTimelineItemData(item)}
           />
         ))}
       </div>
@@ -245,78 +300,167 @@ const Section: React.FC<SectionProps> = ({ title, items, type }) => {
   );
 };
 
-export default function About() {
-  const tvShows = ["GOT", "Dark", "The Night Of", "The Outsider"];
-  const videoGames = ["COD MW II (2009)", "GTA V", "Crysis 2", "Hot Pursuit 2"];
+const Introduction: React.FC = () => {
+  return (
+    <>
+      <p className="text-lg tracking-wider text-justify mb-10">
+        Hi, I'm Nehan Wijayagunarathna — a second-year Information Technology
+        student at the University of Moratuwa. I'm passionate about
+        understanding how systems work behind the scenes and building reliable,
+        scalable applications. My experience spans full-stack development and
+        DevOps, with a focus on creating production-ready solutions. I enjoy
+        optimizing systems, debugging complex issues, and improving workflows to
+        build efficient, practical software.
+      </p>
 
+      <p className="text-lg mb-4 tracking-wider">
+        As a member of the Rotaract IT team, I contribute to software projects
+        and collaborate on various initiatives. I also tutor computer science,
+        helping students master programming concepts. These roles have honed my
+        teamwork, communication, and problem-solving abilities. I'm always eager
+        for new opportunities to learn and contribute to meaningful projects.
+      </p>
+    </>
+  );
+};
+
+const HobbiesSection: React.FC = () => {
+  return (
+    <p className="text-lg tracking-wider text-justify">
+      I enjoy watching{" "}
+      <HobbyHoverCard
+        triggerText="TV series"
+        title="What I recommend"
+        items={TV_SHOWS}
+      />
+      in my free time, traveling to explore new places, playing{" "}
+      <HobbyHoverCard
+        triggerText="video games"
+        title="My top games"
+        items={VIDEO_GAMES}
+      />
+      , and playing badminton.
+    </p>
+  );
+};
+
+const Certifications: React.FC = () => {
+  const [showPopup, setShowPopup] = React.useState(false);
+
+  return (
+    <div className="mt-20">
+      <h2 className="text-4xl font-bold text-[var(--color-primary)] mb-10">
+        Certifications
+      </h2>
+      <div className="flex flex-row gap-6 flex-wrap">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-10  w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 col-span-9">
+            {CERTIFICATION_DETAILS.map((cert, index) => (
+              <a
+                key={index}
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer"
+              >
+                <div className="h-40 relative bg-(--color-accent)">
+                  {cert.imageurl && (
+                    <Image
+                      src={cert.imageurl}
+                      alt={cert.name}
+                      fill
+                      className="object-cover"
+                    />
+                  )}
+                </div>
+                <div className="p-4 bg-(--color-accent)">
+                  <p className="text-md font- mb-2 transition-colors">
+                    {cert.name}
+                  </p>
+                  <p className="text-xs opacity-70">
+                    Published by {cert.publisher}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div className="flex flex-col items-center justify-center ">
+            {!showPopup ? (
+              <button
+                onClick={() => {
+                  setShowPopup(true);
+                  setTimeout(() => setShowPopup(false), 2000);
+                }}
+                className="text-xs font-semibold border border-white/10 px-4 py-2 hover:border-white/30 transition-all duration-300 cursor-pointer"
+              >
+                View More
+              </button>
+            ) : (
+              <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-300">
+                <a
+                  href="https://www.linkedin.com/in/yourprofile/details/certifications/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold border border-white/10 px-4 py-2 hover:border-white/30 transition-all duration-300 cursor-pointer text-center"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://www.credly.com/users/yourprofile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold border border-white/10 px-4 py-2 hover:border-white/30 transition-all duration-300 cursor-pointer text-center"
+                >
+                  Credly
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function About() {
   return (
     <div className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
       <div className="w-full p-10">
         <div className="relative">
           <section className="min-h-screen">
-            <h1 className="text-5xl font-bold mb-10 text-[var(--color-primary)] mt-8">
+            <h1 className="text-5xl font-bold mb-10 text-[var(--color-primary)] mt-5">
               About Me
             </h1>
 
-            <div>
-              <p className="text-lg tracking-wider text-justify mb-10">
-                Hi, I'm Nehan Wijayagunarathna — a second-year Information
-                Technology student at the University of Moratuwa. I'm passionate
-                about understanding how systems work behind the scenes and
-                building reliable, scalable applications. My experience spans
-                full-stack development and DevOps, with a focus on creating
-                production-ready solutions. I enjoy optimizing systems,
-                debugging complex issues, and improving workflows to build
-                efficient, practical software.
-              </p>
-
-              <p className="text-lg mb-4 tracking-wider">
-                As a member of the Rotaract IT team, I contribute to software
-                projects and collaborate on various initiatives. I also tutor
-                computer science, helping students master programming concepts.
-                These roles have honed my teamwork, communication, and
-                problem-solving abilities. I'm always eager for new
-                opportunities to learn and contribute to meaningful projects.
-              </p>
-            </div>
-
+            <Introduction />
             <StatsBox />
+            <HobbiesSection />
+          </section>
 
-            <div>
-              <p className="text-lg tracking-wider text-justify">
-                I enjoy watching{" "}
-                <HobbyHoverCard
-                  triggerText="TV series"
-                  title="What i recommend"
-                  items={tvShows}
+          <section className="min-h-screen">
+            <div className="w-full h-full">
+              <div className="grid grid-cols-2 gap-8">
+                <SectionExperience
+                  title="Education"
+                  items={EDUCATION_DETAILS}
+                  type="education"
                 />
-                in my free time, traveling to explore new places, playing{" "}
-                <HobbyHoverCard
-                  triggerText="video games"
-                  title="My top games"
-                  items={videoGames}
+
+                <SectionExperience
+                  title="Experience"
+                  items={EXPERIENCE_DETAILS}
+                  type="experience"
                 />
-                , and playing badminton
-              </p>
+              </div>
+              <div className="mt-10">
+                <Certifications />
+              </div>
             </div>
           </section>
 
           <section className="min-h-screen">
-            <div className="mt-10">
-              <div className="grid grid-cols-2 gap-8">
-                <Section
-                  title="Education"
-                  items={educationDetails}
-                  type="education"
-                />
 
-                <Section
-                  title="Experience"
-                  items={experienceDetails}
-                  type="experience"
-                />
-              </div>
-            </div>
           </section>
         </div>
       </div>
