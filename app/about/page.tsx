@@ -11,7 +11,8 @@ import certificate2 from "@/public/images/certificate2.png";
 import certificate3 from "@/public/images/certificate3.png";
 import { icons } from "lucide-react";
 
-{}
+{
+}
 import javascriptIcon from "@/public/icons/javasripticon.svg";
 import typescriptIcon from "@/public/icons/typescripticon.svg";
 import pythonIcon from "@/public/icons/pythonicon.svg";
@@ -215,7 +216,11 @@ const SkillsList = [
 
   { skill: "React", category: "Frontend development", icon: reactIcon },
   { skill: "Next.js", category: "Frontend development", icon: nextjsIcon },
-  { skill: "Tailwind CSS", category: "Frontend development", icon: tailwindIcon },
+  {
+    skill: "Tailwind CSS",
+    category: "Frontend development",
+    icon: tailwindIcon,
+  },
   { skill: "HTML", category: "Frontend development", icon: htmlIcon },
   { skill: "CSS", category: "Frontend development", icon: cssIcon },
   { skill: "shadcn", category: "Frontend development", icon: shadcnIcon },
@@ -225,7 +230,7 @@ const SkillsList = [
   { skill: "FastAPI", category: "Backend development", icon: fastapiIcon },
   { skill: "Prisma", category: "Backend development", icon: prismaIcon },
   { skill: "Firebase", category: "Backend development", icon: firebaseIcon },
-  { skill: "Supabase", category: "Database", icon: supabaseIcon },
+  { skill: "Supabase", category: "Backend development", icon: supabaseIcon },
 
   { skill: "MongoDB", category: "Database", icon: mongodbIcon },
   { skill: "MySQL", category: "Database", icon: mysqlIcon },
@@ -252,6 +257,28 @@ const SkillsList = [
   { skill: "Illustrator", category: "Other Tools", icon: illustratorIcon },
   { skill: "Photoshop", category: "Other Tools", icon: photoshopIcon },
   { skill: "Postman", category: "Other Tools", icon: postmanIcon },
+];
+
+const HighlightItems = [
+  {
+    title: "9 th Place in Sherlock 2024",
+    organizedBy:
+      "IEEE Women in Engineering Student Branch Affinity Group of IIT",
+    description:
+      "SHErlock 2.0 is a national problem-solving competition that challenged undergraduates across Sri Lanka with complex puzzles and strategic scenarios. Organized by IEEE WIE IIT, the event emphasized critical thinking, teamwork, and celebrated women’s impact in STEM.",
+  },
+  {
+    title: "Finalist in Medusa2.0 2025",
+    organizedBy: "ECSC University of Kelaniya",
+    description:
+      "MEDUSA 2.0 is the ultimate cybersecurity battleground where the brightest minds from universities across the nation compete in advanced Capture The Flag challenges. This year, we have included various new types of CTF challenges, expanding the competition with innovative categories and advanced problem-solving experiences for all participants.",
+  },
+  {
+    title: "111 th Place in Mora Xtreme 2025",
+    organizedBy: "IEEE Student Branch University of Moratuwa",
+    description:
+      "Mora Xtreme is an annual 24-hour hackathon organized by the IEEE Student Branch of the University of Moratuwa. It brings together innovative minds to develop cutting-edge solutions under time constraints, fostering creativity, teamwork, and technical skills in a high-pressure environment.",
+  },
 ];
 
 const TV_SHOWS = ["GOT", "Dark", "The Night Of", "The Outsider"];
@@ -577,6 +604,49 @@ const SkillSection: React.FC = () => {
   );
 };
 
+const HighlightSection: React.FC = () => {
+  return (
+    <div className="mt-20 flex flex-col justify-center">
+      <div>
+        {" "}
+        <h2 className="text-4xl font-bold text-[var(--color-primary)] mb-20">
+          Highlights
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {HighlightItems.map((item, idx) => (
+            <div
+              key={idx}
+              className="group relative overflow-hidden border border-transparent hover:border-white/30 transition-all duration-300 cursor-default bg-[var(--color-accent1)]"
+            >
+              <div className="p-6">
+                <p className="text-lg font-bold mb-2 text-[var(--color-foreground)]">
+                  {item.title}
+                </p>
+                <p className="text-sm opacity-70 mb-4">
+                  Organized by {item.organizedBy}
+                </p>
+                <p className="text-sm text-[var(--color-foreground)] text-justify">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-col items-center mt-10">
+            <button
+            className="border border-white/10 px-4 py-2 hover:border-white/30 transition-all duration-300 cursor-pointer mt-8 text-sm font-semibold"
+            onClick={() => {
+              window.open("https://www.linkedin.com/in/yourprofile/details/awards/", "_blank");
+            }}
+            >
+            View More
+            </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function About() {
   return (
     <div className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
@@ -615,6 +685,10 @@ export default function About() {
 
           <section className="min-h-screen">
             <SkillSection />
+          </section>
+
+          <section className="min-h-screen">
+            <HighlightSection />
           </section>
         </div>
       </div>
