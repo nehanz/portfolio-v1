@@ -554,7 +554,7 @@ const SkillSection: React.FC = () => {
               {skills.map(({ skill, icon }, index) => (
                 <div
                   key={index}
-                  className="px-4 py-2 border border-(--color-accent1) hover:border-(--color-primary)  transition-all duration-300 cursor-default"
+                  className="px-4 py-2 border border-(--color-accent1) hover:border-white/60  transition-all duration-300 cursor-default"
                 >
                   <span className="inline-block w-5 h-5 mr-2 align-middle relative">
                     <Image
