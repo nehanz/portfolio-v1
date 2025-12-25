@@ -8,7 +8,8 @@
     --color-foreground: #FFFFFF;
     --color-primary: #E5FE88;
     --color-secondary: #252324;
-    --color-accent: #3B393A;
+    --color-accent1: #3B393A;
+    --color-accent2: #7c7c7c;
   }
 }
 
@@ -41,8 +42,8 @@ h1, h2, h3, h4, h5, h6 {
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
+  --color-accent1: var(--accent);
+  --color-accent1-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
