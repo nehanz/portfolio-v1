@@ -9,6 +9,53 @@ import Image from "next/image";
 import certificate1 from "@/public/images/certificate1.png";
 import certificate2 from "@/public/images/certificate2.png";
 import certificate3 from "@/public/images/certificate3.png";
+import { icons } from "lucide-react";
+
+{}
+import javascriptIcon from "@/public/icons/javasripticon.svg";
+import typescriptIcon from "@/public/icons/typescripticon.svg";
+import pythonIcon from "@/public/icons/pythonicon.svg";
+import reactIcon from "@/public/icons/reacticon.svg";
+import nextjsIcon from "@/public/icons/nextjsicon.svg";
+import nodejsIcon from "@/public/icons/nodejsicon.svg";
+import expressIcon from "@/public/icons/expressjsicon.svg";
+import mongodbIcon from "@/public/icons/mongodbicon.svg";
+import postgresqlIcon from "@/public/icons/postgresqlicon.svg";
+import dockerIcon from "@/public/icons/dockericon.svg";
+import kubernetesIcon from "@/public/icons/kubernetesicon.svg";
+import awsIcon from "@/public/icons/awsicon.svg";
+
+import javaIcon from "@/public/icons/javaicon.svg";
+import cppIcon from "@/public/icons/cppicon.svg";
+import phpIcon from "@/public/icons/phpicon.svg";
+import sqlIcon from "@/public/icons/sqlicon.svg";
+import bashIcon from "@/public/icons/bashicon.svg";
+import tailwindIcon from "@/public/icons/tailwindicon.svg";
+import htmlIcon from "@/public/icons/htmlicon.svg";
+import cssIcon from "@/public/icons/cssicon.svg";
+import shadcnIcon from "@/public/icons/shadcnicon.svg";
+import fastapiIcon from "@/public/icons/fastapiicon.svg";
+import prismaIcon from "@/public/icons/prismaicon.svg";
+import firebaseIcon from "@/public/icons/firebaseicon.svg";
+import supabaseIcon from "@/public/icons/supabaseicon.svg";
+import mysqlIcon from "@/public/icons/mysqlicon.svg";
+import mssqlIcon from "@/public/icons/mssqlicon.svg";
+import azureIcon from "@/public/icons/azureicon.svg";
+import tektonIcon from "@/public/icons/tektonicon.svg";
+import openshiftIcon from "@/public/icons/openshifticon.svg";
+import githubActionsIcon from "@/public/icons/githubactionsicon.svg";
+import ubuntuIcon from "@/public/icons/ubuntuicon.svg";
+import parrotOSIcon from "@/public/icons/parrotosicon.svg";
+import gitIcon from "@/public/icons/giticon.svg";
+import githubIcon from "@/public/icons/githubicon.svg";
+import arduinoIcon from "@/public/icons/arduinoicon.svg";
+import esp32Icon from "@/public/icons/esp32icon.svg";
+import iotIcon from "@/public/icons/ioticon.svg";
+import figmaIcon from "@/public/icons/figmaicon.svg";
+import canvaIcon from "@/public/icons/canvaicon.svg";
+import illustratorIcon from "@/public/icons/illustratoricon.svg";
+import photoshopIcon from "@/public/icons/photoshopicon.svg";
+import postmanIcon from "@/public/icons/postmanicon.svg";
 
 // Types
 interface TimelineItemData {
@@ -148,6 +195,65 @@ const CERTIFICATION_DETAILS = [
   },
 ];
 
+const SkillsList = [
+  {
+    skill: "JavaScript",
+    category: "Programming Language",
+    icon: javascriptIcon,
+  },
+  {
+    skill: "TypeScript",
+    category: "Programming Language",
+    icon: typescriptIcon,
+  },
+  { skill: "Python", category: "Programming Language", icon: pythonIcon },
+  { skill: "Java", category: "Programming Language", icon: javaIcon },
+  { skill: "C/C++", category: "Programming Language", icon: cppIcon },
+  { skill: "PHP", category: "Programming Language", icon: phpIcon },
+  { skill: "SQL", category: "Database", icon: sqlIcon },
+  { skill: "Bash", category: "Database", icon: bashIcon },
+
+  { skill: "React", category: "Frontend development", icon: reactIcon },
+  { skill: "Next.js", category: "Frontend development", icon: nextjsIcon },
+  { skill: "Tailwind CSS", category: "Frontend development", icon: tailwindIcon },
+  { skill: "HTML", category: "Frontend development", icon: htmlIcon },
+  { skill: "CSS", category: "Frontend development", icon: cssIcon },
+  { skill: "shadcn", category: "Frontend development", icon: shadcnIcon },
+
+  { skill: "Node.js", category: "Backend development", icon: nodejsIcon },
+  { skill: "Express.js", category: "Backend development", icon: expressIcon },
+  { skill: "FastAPI", category: "Backend development", icon: fastapiIcon },
+  { skill: "Prisma", category: "Backend development", icon: prismaIcon },
+  { skill: "Firebase", category: "Backend development", icon: firebaseIcon },
+  { skill: "Supabase", category: "Database", icon: supabaseIcon },
+
+  { skill: "MongoDB", category: "Database", icon: mongodbIcon },
+  { skill: "MySQL", category: "Database", icon: mysqlIcon },
+  { skill: "PostgreSQL", category: "Database", icon: postgresqlIcon },
+  { skill: "MSSQL", category: "Database", icon: mssqlIcon },
+
+  { skill: "Docker", category: "DevOps", icon: dockerIcon },
+  { skill: "Kubernetes", category: "DevOps", icon: kubernetesIcon },
+  { skill: "AWS", category: "DevOps", icon: awsIcon },
+  { skill: "Azure", category: "DevOps", icon: azureIcon },
+  { skill: "Tekton", category: "DevOps", icon: tektonIcon },
+  { skill: "OpenShift", category: "DevOps", icon: openshiftIcon },
+  { skill: "GitHub Actions", category: "DevOps", icon: githubActionsIcon },
+  { skill: "Ubuntu", category: "DevOps", icon: ubuntuIcon },
+  { skill: "Parrot OS", category: "DevOps", icon: parrotOSIcon },
+  { skill: "Git", category: "DevOps", icon: gitIcon },
+  { skill: "GitHub", category: "DevOps", icon: githubIcon },
+
+  { skill: "Arduino", category: "Other Tools", icon: arduinoIcon },
+  { skill: "ESP32", category: "Other Tools", icon: esp32Icon },
+  { skill: "IoT", category: "Other Tools", icon: iotIcon },
+  { skill: "Figma", category: "Other Tools", icon: figmaIcon },
+  { skill: "Canva", category: "Other Tools", icon: canvaIcon },
+  { skill: "Illustrator", category: "Other Tools", icon: illustratorIcon },
+  { skill: "Photoshop", category: "Other Tools", icon: photoshopIcon },
+  { skill: "Postman", category: "Other Tools", icon: postmanIcon },
+];
+
 const TV_SHOWS = ["GOT", "Dark", "The Night Of", "The Outsider"];
 const VIDEO_GAMES = ["COD MW II (2009)", "GTA V", "Crysis 2", "Hot Pursuit 2"];
 
@@ -167,7 +273,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
               {title}
             </h3>
           </HoverCardTrigger>
-          <HoverCardContent className="w-80 bg-[var(--color-accent)] border-white/10">
+          <HoverCardContent className="w-80 bg-[var(--color-accent1)] border-white/10">
             <div className="space-y-1">
               <p className="text-sm text-[var(--color-foreground)]">
                 {details}
@@ -196,7 +302,7 @@ const StatsBox: React.FC = () => {
     <div className="relative w-fit mx-auto my-25">
       <div className="absolute top-2 left-2 w-full h-full bg-[var(--color-primary)] z-0" />
 
-      <div className="relative flex flex-row gap-12 bg-[var(--color-accent)] text-[var(--color-foreground)] px-3 py-10 w-fit z-10 shadow-lg">
+      <div className="relative flex flex-row gap-12 bg-[var(--color-accent1)] text-[var(--color-foreground)] px-3 py-10 w-fit z-10 shadow-lg">
         <StatItem
           value="3+"
           label="Years of coding experience"
@@ -251,7 +357,7 @@ const HobbyHoverCard: React.FC<HobbyHoverCardProps> = ({
           />
         </span>
       </HoverCardTrigger>
-      <HoverCardContent className="w-80 bg-[var(--color-accent)] border-white/10">
+      <HoverCardContent className="w-80 bg-[var(--color-accent1)] border-white/10">
         <div className="space-y-1">
           <h4 className="text-md text-[var(--color-foreground)]">{title}</h4>
           <ul className="list-disc list-inside text-xs text-[var(--color-foreground)]">
@@ -363,7 +469,7 @@ const Certifications: React.FC = () => {
                 rel="noopener noreferrer"
                 className="group relative overflow-hidden border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer"
               >
-                <div className="h-40 relative bg-(--color-accent)">
+                <div className="h-40 relative bg-(--color-accent1)">
                   {cert.imageurl && (
                     <Image
                       src={cert.imageurl}
@@ -373,7 +479,7 @@ const Certifications: React.FC = () => {
                     />
                   )}
                 </div>
-                <div className="p-4 bg-(--color-accent)">
+                <div className="p-4 bg-(--color-accent1)">
                   <p className="text-md font- mb-2 transition-colors">
                     {cert.name}
                   </p>
@@ -423,6 +529,54 @@ const Certifications: React.FC = () => {
   );
 };
 
+const SkillSection: React.FC = () => {
+  const groupedSkills = SkillsList.reduce((acc, { skill, category, icon }) => {
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push({ skill, icon });
+    return acc;
+  }, {} as Record<string, Array<{ skill: string; icon: any }>>);
+
+  return (
+    <div className="mt-20">
+      <h2 className="text-4xl font-bold text-(--color-primary) mb-10">
+        What I gain so far
+      </h2>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {Object.entries(groupedSkills).map(([category, skills]) => (
+          <div key={category} className="border-b border-white/10 pb-6">
+            <p className="text-lg font-medium mb-4 text-(--color-accent2)">
+              {category}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {skills.map(({ skill, icon }, index) => (
+                <div
+                  key={index}
+                  className="px-4 py-2 border border-(--color-accent1) hover:border-(--color-primary)  transition-all duration-300 cursor-default"
+                >
+                  <span className="inline-block w-5 h-5 mr-2 align-middle relative">
+                    <Image
+                      src={icon}
+                      alt={skill}
+                      fill
+                      className="object-contain invert"
+                    />
+                  </span>
+                  <span className="text-sm font-medium font-color-accent">
+                    {skill}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function About() {
   return (
     <div className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
@@ -460,7 +614,7 @@ export default function About() {
           </section>
 
           <section className="min-h-screen">
-
+            <SkillSection />
           </section>
         </div>
       </div>

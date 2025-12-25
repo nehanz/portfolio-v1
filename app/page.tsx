@@ -98,7 +98,7 @@ export default function Home() {
         >
           <div className="relative w-[500px] h-[500px]">
             <div className="absolute top-2 left-2 w-full h-full bg-(--color-primary)"></div>
-            <div className="absolute top-0 left-0 w-full h-full bg-(--color-accent) overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-(--color-accent1) overflow-hidden">
               <img
                 src="/images/PortfolioImg.png"
                 alt="Profile Picture"
@@ -135,7 +135,7 @@ export default function Home() {
                 Wijayagunarathna
               </h1>
             </div>
-            <div className="text-3xl font-semibold max-w-lg text-(--color-accent) mb-10">
+            <div className="text-3xl font-semibold max-w-lg text-(--color-accent1) mb-10">
               <RoleType />
             </div>
             <div className="text-lg max-w-lg">
@@ -150,7 +150,7 @@ export default function Home() {
                 href="https://drive.google.com/drive/folders/18A-tg5YCdFeTAMxAyIPGn-FeYkGgYbKS?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-6 px-6 py-3 bg-(--color-accent) text-(--color-foreground) font-semibold hover:bg-(--color-primary) hover:text-(--color-background) transition-colors duration-300"
+                className="inline-block mt-6 px-6 py-3 bg-(--color-accent1) text-(--color-foreground) font-semibold hover:bg-(--color-primary) hover:text-(--color-background) transition-colors duration-300"
               >
                 Download CV
               </a>
@@ -161,7 +161,7 @@ export default function Home() {
           <div className="min-h-screen flex items-center justify-center">
             <blockquote
               className="text-4xl font-bold text-(--color-foreground) italic border-l-3 pl-6"
-              style={{ borderLeftColor: "var(--color-accent)" }}
+              style={{ borderLeftColor: "var(--color-accent1)" }}
             >
               “Never forget what you are. The world will not. Wear it like
               armor”
@@ -221,7 +221,7 @@ export default function Home() {
                 Wijayagunarathna
               </h1>
             </div>
-            <div className="text-3xl font-semibold max-w-lg text-(--color-accent) mb-10">
+            <div className="text-3xl font-semibold max-w-lg text-(--color-accent1) mb-10">
               <RoleType />
             </div>
             <div className=" flex flex-col gap-10">
@@ -236,7 +236,7 @@ export default function Home() {
                 href="https://drive.google.com/drive/folders/18A-tg5YCdFeTAMxAyIPGn-FeYkGgYbKS?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block w-1/2 px-6 py-3 bg-(--color-accent) text-(--color-foreground) font-semibold active:bg-(--color-primary) active:text-(--color-background) transition-colors duration-300 text-center "
+                className="inline-block w-1/2 px-6 py-3 bg-(--color-accent1) text-(--color-foreground) font-semibold active:bg-(--color-primary) active:text-(--color-background) transition-colors duration-300 text-center "
               >
                 Download CV
               </a>

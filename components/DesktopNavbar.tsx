@@ -123,7 +123,7 @@ export default function DesktopNavbar() {
   ];
 
   return (
-    <aside className="w-14 h-full bg-(--color-accent) flex flex-col items-center justify-between shrink-0">
+    <aside className="w-14 h-full bg-(--color-accent1) flex flex-col items-center justify-between shrink-0">
       <nav className="w-full">
         <ul>
           {navItems.map((item) => (
