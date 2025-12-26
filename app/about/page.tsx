@@ -25,8 +25,8 @@ import postgresqlIcon from "@/public/icons/postgresqlicon.svg";
 import dockerIcon from "@/public/icons/dockericon.svg";
 import kubernetesIcon from "@/public/icons/kubernetesicon.svg";
 import awsIcon from "@/public/icons/awsicon.svg";
-
 import javaIcon from "@/public/icons/javaicon.svg";
+import cIcon from "@/public/icons/cicon.svg";
 import cppIcon from "@/public/icons/cppicon.svg";
 import phpIcon from "@/public/icons/phpicon.svg";
 import sqlIcon from "@/public/icons/sqlicon.svg";
@@ -56,6 +56,8 @@ import figmaIcon from "@/public/icons/figmaicon.svg";
 import canvaIcon from "@/public/icons/canvaicon.svg";
 import illustratorIcon from "@/public/icons/illustratoricon.svg";
 import photoshopIcon from "@/public/icons/photoshopicon.svg";
+import premiereprIcon from "@/public/icons/premierepro.svg";
+import aftereffectsIcon from "@/public/icons/aftereffects.svg";
 import postmanIcon from "@/public/icons/postmanicon.svg";
 
 // Types
@@ -209,10 +211,11 @@ const SkillsList = [
   },
   { skill: "Python", category: "Programming Language", icon: pythonIcon },
   { skill: "Java", category: "Programming Language", icon: javaIcon },
-  { skill: "C/C++", category: "Programming Language", icon: cppIcon },
+  { skill: "C", category: "Programming Language", icon: cIcon },
+  { skill: "C++", category: "Programming Language", icon: cppIcon },
   { skill: "PHP", category: "Programming Language", icon: phpIcon },
-  { skill: "SQL", category: "Database", icon: sqlIcon },
-  { skill: "Bash", category: "Database", icon: bashIcon },
+  { skill: "SQL", category: "Programming Language", icon: sqlIcon },
+  { skill: "Bash", category: "Programming Language", icon: bashIcon },
 
   { skill: "React", category: "Frontend development", icon: reactIcon },
   { skill: "Next.js", category: "Frontend development", icon: nextjsIcon },
@@ -256,7 +259,10 @@ const SkillsList = [
   { skill: "Canva", category: "Other Tools", icon: canvaIcon },
   { skill: "Illustrator", category: "Other Tools", icon: illustratorIcon },
   { skill: "Photoshop", category: "Other Tools", icon: photoshopIcon },
+  { skill: "Premiere Pro", category: "Other Tools", icon: premiereprIcon },
+  { skill: "After Effects", category: "Other Tools", icon: aftereffectsIcon },  
   { skill: "Postman", category: "Other Tools", icon: postmanIcon },
+
 ];
 
 const HighlightItems = [
