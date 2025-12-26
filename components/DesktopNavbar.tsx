@@ -132,7 +132,7 @@ export default function DesktopNavbar() {
               className={`py-2 ${
                 pathname === item.href
                   ? "bg-(--color-primary) text-(--color-background)"
-                  : "hover:bg-(--color-secondary) text-(--color-foreground)"
+                  : "hover:bg-(--color-secondary) text-(--color-foreground) transition-all duration-300"
               }`}
             >
               <Link
@@ -155,7 +155,7 @@ export default function DesktopNavbar() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-full h-14 hover:bg-(--color-secondary) text-(--color-foreground) transition-all"
+                className="flex items-center justify-center w-full h-14 hover:bg-(--color-secondary) text-(--color-foreground) transition-all duration-300"
                 title={social.name}
               >
                 {social.icon}
