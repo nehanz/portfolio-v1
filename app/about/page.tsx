@@ -537,7 +537,7 @@ const Certifications: React.FC = () => {
             ) : (
               <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-top-2 duration-300">
                 <a
-                  href="https://www.linkedin.com/in/yourprofile/details/certifications/"
+                  href="https://www.linkedin.com/in/nehanz/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs font-semibold border border-white/10 px-4 py-2 hover:border-white/30 transition-all duration-300 cursor-pointer text-center"
@@ -545,7 +545,7 @@ const Certifications: React.FC = () => {
                   LinkedIn
                 </a>
                 <a
-                  href="https://www.credly.com/users/yourprofile"
+                  href="https://www.credly.com/users/nehan-wijayagunarathna"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs font-semibold border border-white/10 px-4 py-2 hover:border-white/30 transition-all duration-300 cursor-pointer text-center"
@@ -641,7 +641,7 @@ const HighlightSection: React.FC = () => {
             <button
             className="border border-white/10 px-4 py-2 hover:border-white/30 transition-all duration-300 cursor-pointer mt-8 text-sm font-semibold"
             onClick={() => {
-              window.open("https://www.linkedin.com/in/yourprofile/details/awards/", "_blank");
+              window.open("https://www.linkedin.com/in/nehanz/", "_blank");
             }}
             >
             View More
