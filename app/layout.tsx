@@ -44,10 +44,10 @@ export default function RootLayout({
       <body className={`${formaDJR.className} overflow-hidden`}>
         <div className="relative h-screen overflow-hidden">
           {/* Desktop Navbar - Hidden on mobile */}
-          <div className="hidden md:block absolute left-15 z-10 h-full bg-[var(--color-accent)]">
+          <div className="hidden md:block absolute left-15 z-10 h-full bg-(--color-accent1)">
             <DesktopNavbar />
           </div>
-          <main className="bg-[var(--color-secondary)] md:mx-15 md:mb-10 md:px-20 h-screen">
+          <main className="bg-(--color-secondary) md:mx-15 md:mb-10 md:px-20 h-screen">
             <div>{children}</div>
           </main>
         </div>
