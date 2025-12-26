@@ -9,6 +9,7 @@ export default function Home() {
   const mobileColumnRef = useRef<HTMLDivElement>(null);
   const [grayscaleValue, setGrayscaleValue] = useState(0);
   const [imageOpacity, setImageOpacity] = useState(1);
+  const [mouseOffset, setMouseOffset] = useState({ x: 5, y: 5 });
 
   useEffect(() => {
     // visit first
@@ -70,6 +71,22 @@ export default function Home() {
       }
     };
 
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const containerWidth = 500;
+      const containerHeight = 500;
+      const centerX = window.innerWidth - containerWidth / 2 - 5;
+      const centerY = window.innerHeight / 2;
+      const offsetX = e.clientX - centerX;
+      const offsetY = e.clientY - centerY;
+      setMouseOffset({
+        x: Math.max(-5, Math.min(5, offsetX / 10)),
+        y: Math.max(-5, Math.min(5, offsetY / 10)),
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
     const leftColumn = leftColumnRef.current;
     const mobileColumn = mobileColumnRef.current;
     if (leftColumn) {
@@ -83,6 +100,7 @@ export default function Home() {
         leftColumn.removeEventListener("scroll", handleDesktopScroll);
       if (mobileColumn)
         mobileColumn.removeEventListener("scroll", handleMobileScroll);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
@@ -90,20 +108,29 @@ export default function Home() {
     <>
       <div className="hidden md:block w-full h-screen relative">
         <div
-          className="absolute right-5 top-0 w-1/2 h-screen flex items-center justify-center"
+          className="pl-20 absolute right-5 top-0 w-1/2 h-screen flex items-center justify-center"
           style={{ zIndex: 1 }}
         >
-          <div className="relative w-[500px] h-[500px]">
-            <div className="absolute top-2 left-2 w-full h-full bg-(--color-primary)"></div>
+            <div className="relative w-[500px] h-[500px]">
+            {/* Moveable bg-primary div */}
+            <div
+              className="absolute w-full h-full bg-(--color-primary) pointer-events-none"
+              style={{
+              top: 0,
+              left: 0,
+              transform: `translate(${mouseOffset.x}px, ${mouseOffset.y}px)`,
+              transition: "transform 0.3s linear",
+              }}
+            ></div>
             <div className="absolute top-0 left-0 w-full h-full bg-(--color-accent1) overflow-hidden">
               <img
-                src="/images/PortfolioImg.png"
-                alt="Profile Picture"
-                className="w-full h-full object-cover transition-all duration-300 ease-out"
-                style={{ filter: `grayscale(${grayscaleValue}%)` }}
+              src="/images/PortfolioImg.png"
+              alt="Profile Picture"
+              className="w-full h-full object-cover transition-all duration-300 ease-out"
+              style={{ filter: `grayscale(${grayscaleValue}%)` }}
               />
             </div>
-          </div>
+            </div>
         </div>
 
         {/* Scrollable */}
