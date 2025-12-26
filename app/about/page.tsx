@@ -326,23 +326,22 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 
 const StatsBox: React.FC = () => {
   return (
-    <div className="relative w-fit mx-auto my-25">
-      <div className="absolute top-2 left-2 w-full h-full bg-[var(--color-primary)] z-0" />
+    <div className="relative w-fit mx-auto my-25 group">
+      <div className="absolute top-1 left-1 w-full h-full bg-[var(--color-primary)] z-0 group-hover:scale-96 transition-all duration-300 ease-in-out" />
+      <div className="relative flex flex-row gap-12 bg-[var(--color-accent1)] text-[var(--color-foreground)] px-6 py-10 w-fit z-10 cursor-default transition-all duration-500 ease-in-out group-hover:scale-103">
+      <StatItem
+        value="3+"
+        label="Years of coding experience"
+        description="Developing solid programming skills through continuous learning"
+      />
 
-      <div className="relative flex flex-row gap-12 bg-[var(--color-accent1)] text-[var(--color-foreground)] px-3 py-10 w-fit z-10 shadow-lg">
-        <StatItem
-          value="3+"
-          label="Years of coding experience"
-          description="Developing solid programming skills through continuous learning"
-        />
+      <div className="w-px bg-white/20 self-stretch transition-all duration-300" />
 
-        <div className="w-px bg-white/30 self-stretch" />
-
-        <StatItem
-          value="5+"
-          label="Projects completed"
-          description="Building reliable and scalable solutions through hands-on development"
-        />
+      <StatItem
+        value="5+"
+        label="Projects completed"
+        description="Building reliable and scalable solutions through hands-on development"
+      />
       </div>
     </div>
   );
