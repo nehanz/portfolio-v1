@@ -11,15 +11,25 @@ export default function Home() {
   const [imageOpacity, setImageOpacity] = useState(1);
 
   useEffect(() => {
-    // Scroll to bottom on initial load (both desktop and mobile)
-    if (leftColumnRef.current) {
-      leftColumnRef.current.scrollTop = leftColumnRef.current.scrollHeight;
-    }
-    if (mobileColumnRef.current) {
-      mobileColumnRef.current.scrollTop = mobileColumnRef.current.scrollHeight;
+    // visit first
+    const hasVisited = sessionStorage.getItem("visitedHome");
+    if (!hasVisited) {
+      if (leftColumnRef.current) {
+        leftColumnRef.current.scrollTo({
+          top: leftColumnRef.current.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+      if (mobileColumnRef.current) {
+        mobileColumnRef.current.scrollTo({
+          top: mobileColumnRef.current.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+      sessionStorage.setItem("visitedHome", "true");
     }
 
-    // Handle scroll to update grayscale for desktop
+    // Desktop grayscale
     const handleDesktopScroll = () => {
       if (leftColumnRef.current) {
         const scrollTop = leftColumnRef.current.scrollTop;
@@ -27,21 +37,18 @@ export default function Home() {
           leftColumnRef.current.scrollHeight -
           leftColumnRef.current.clientHeight;
         const scrollPercentage = (scrollTop / scrollHeight) * 100;
-
-        const grayscaleStart = 60; // start grayscale after 60% scroll
+        const grayscaleStart = 60;
         let grayscale = 0;
-
         if (scrollPercentage > grayscaleStart) {
           const progress =
             (scrollPercentage - grayscaleStart) / (100 - grayscaleStart);
-          grayscale = progress * 100; // convert progress to 0–100 grayscale
+          grayscale = progress * 100;
         }
-
         setGrayscaleValue(Math.max(0, Math.min(100, grayscale)));
       }
     };
 
-    // Handle scroll to update grayscale and opacity for mobile
+    // Mobile grayscale
     const handleMobileScroll = () => {
       if (mobileColumnRef.current) {
         const scrollTop = mobileColumnRef.current.scrollTop;
@@ -49,19 +56,13 @@ export default function Home() {
           mobileColumnRef.current.scrollHeight -
           mobileColumnRef.current.clientHeight;
         const scrollPercentage = (scrollTop / scrollHeight) * 100;
-
-        // Reversed Grayscale effect: 0% (top) = grayscale, 100% (bottom) = colorful
-        const grayscale = scrollPercentage; // Reverse this to increase grayscale as you scroll up
-        setGrayscaleValue(Math.max(0, Math.min(100, grayscale)));
-
-        // Fade in image when reaching name section (top 30%)
-        // When scrollPercentage < 30%, start fading in
+        setGrayscaleValue(Math.max(0, Math.min(100, scrollPercentage)));
         if (scrollPercentage < 30) {
           const fadeStart = 0;
           const fadeEnd = 30;
           const fadeProgress =
             (scrollPercentage - fadeStart) / (fadeEnd - fadeStart);
-          const opacity = 0.2 + fadeProgress * 0.8; // 0.2 → 1.0
+          const opacity = 0.2 + fadeProgress * 0.8;
           setImageOpacity(Math.max(0.2, Math.min(1, opacity)));
         } else {
           setImageOpacity(1);
@@ -71,14 +72,12 @@ export default function Home() {
 
     const leftColumn = leftColumnRef.current;
     const mobileColumn = mobileColumnRef.current;
-
     if (leftColumn) {
       leftColumn.addEventListener("scroll", handleDesktopScroll);
     }
     if (mobileColumn) {
       mobileColumn.addEventListener("scroll", handleMobileScroll);
     }
-
     return () => {
       if (leftColumn)
         leftColumn.removeEventListener("scroll", handleDesktopScroll);
@@ -89,9 +88,7 @@ export default function Home() {
 
   return (
     <>
-      {/* Desktop Layout */}
       <div className="hidden md:block w-full h-screen relative">
-        {/* Right Column - Fixed Image */}
         <div
           className="absolute right-5 top-0 w-1/2 h-screen flex items-center justify-center"
           style={{ zIndex: 1 }}
@@ -109,7 +106,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Left Column - Scrollable */}
+        {/* Scrollable */}
         <div
           ref={leftColumnRef}
           className="absolute left-10 top-0 w-1/2 h-screen overflow-y-scroll scroll-smooth"
@@ -125,7 +122,6 @@ export default function Home() {
             }
           `}</style>
 
-          {/* Section 1 - Name */}
           <div className="min-h-screen flex flex-col justify-center gap-5">
             <div className="text-4xl font-bold tracking-wider">
               <h1 className="text-9xl font-bold tracking-wider text-(--color-primary)">
@@ -157,7 +153,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Section 2 - Quote */}
           <div className="min-h-screen flex items-center justify-center">
             <blockquote
               className="text-4xl font-bold text-(--color-foreground) italic border-l-3 pl-6"
@@ -211,7 +206,7 @@ export default function Home() {
             }
           `}</style>
 
-          {/* Section 1 - Name + Description + CV */}
+          {/* Section 1 */}
           <div className="min-h-screen flex flex-col px-6 py-20 relative z-20 pointer-events-auto gap-5">
             <div className="mb-8">
               <h1 className="text-7xl font-bold tracking-wider text-(--color-primary) mb-2">
