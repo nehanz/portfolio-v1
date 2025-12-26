@@ -160,6 +160,22 @@ export default function Contact() {
 
   return (
     <div className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      {/* prevent autofill background color */}
+      <style jsx global>{`
+        input:-webkit-autofill,
+        textarea:-webkit-autofill {
+          box-shadow: 0 0 0 1000px var(--color-accent1) inset !important;
+          -webkit-box-shadow: 0 0 0 1000px var(--color-accent1) inset !important;
+          -webkit-text-fill-color: var(--color-foreground) !important;
+          transition: background-color 5000s ease-in-out 0s;
+        }
+        input:-webkit-autofill:focus,
+        textarea:-webkit-autofill:focus {
+          box-shadow: 0 0 0 1000px var(--color-accent1) inset !important;
+          -webkit-box-shadow: 0 0 0 1000px var(--color-accent1) inset !important;
+          -webkit-text-fill-color: var(--color-foreground) !important;
+        }
+      `}</style>
       <div className="w-full p-10">
         <div className="flex flex-col justify-center items-center h-full">
           <section className="flex flex-col justify-center items-center h-full">
@@ -215,8 +231,8 @@ export default function Contact() {
                         name="title"
                         value={formData.title}
                         onChange={handleChange}
-                        className="w-full p-3 border border-[var(--color-accent2)] focus:outline-none hover:border-[var(--color-foreground)] transition-all duration-300"
-                        placeholder="e.g., Job Opportunity"
+                        className={`w-full p-3 border border-(--color-accent2) focus:outline-none hover:border-(--color-foreground) transition-all duration-300 ${formData.title ? " border-(--color-foreground)" : ""}`}
+                        placeholder="Project Idea, Collaboration, etc."
                         aria-label="Message title or subject"
                       />
                     </div>
@@ -234,7 +250,7 @@ export default function Contact() {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full p-3 border border-[var(--color-accent2)] focus:outline-none hover:border-[var(--color-foreground)] transition-all duration-300"
+                        className={`w-full p-3 border border-(--color-accent2) focus:outline-none hover:border-(--color-foreground) transition-all duration-300 ${formData.name ? " border-(--color-foreground)" : ""}`}
                         placeholder="Your name"
                         required
                         aria-required="true"
@@ -257,7 +273,7 @@ export default function Contact() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full p-3 border border-[var(--color-accent2)] focus:outline-none hover:border-[var(--color-foreground)] transition-all duration-300"
+                        className={`w-full p-3 border border-(--color-accent2) focus:outline-none hover:border-(--color-foreground) transition-all duration-300 ${formData.email ? " border-(--color-foreground)" : ""}`}
                         placeholder="your.email@example.com"
                         required
                         aria-required="true"
@@ -278,7 +294,7 @@ export default function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full p-3 border border-[var(--color-accent2)] focus:outline-none hover:border-[var(--color-foreground)] transition-all duration-300"
+                        className={`w-full p-3 border border-(--color-accent2) focus:outline-none hover:border-(--color-foreground) transition-all duration-300 ${formData.phone ? " border-(--color-foreground)" : ""}`}
                         placeholder="+94 77 123 4567"
                         aria-label="Your phone number (optional)"
                       />
@@ -298,7 +314,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={5}
-                      className="w-full p-3 border border-[var(--color-accent2)] focus:outline-none hover:border-[var(--color-foreground)] transition-all duration-300"
+                      className={`w-full p-3 border border-(--color-accent2) focus:outline-none hover:border-(--color-foreground) transition-all duration-300 ${formData.message ? " border-(--color-foreground)" : ""}`}
                       placeholder="Tell me about your project or inquiry..."
                       required
                       aria-required="true"
