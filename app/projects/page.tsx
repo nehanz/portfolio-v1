@@ -8,6 +8,7 @@ import {
   FaTag,
 } from "react-icons/fa";
 import Image from "next/image";
+import { StaticImageData } from "next/image";
 
 import project1 from "@/public/images/project1.png";
 import project2 from "@/public/images/project2.png";
@@ -19,7 +20,7 @@ import project6 from "@/public/images/project6.png";
 interface ProjectData {
   title: string;
   description: string;
-  imageSrc?: any;
+  imageSrc?: String | StaticImageData;
   gitLink?: string;
   siteLink?: string;
   techStack: string[];
@@ -162,7 +163,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
 
   return (
     <div
-      className="border border-transparent hover:border-white/30 transition-all duration-300 cursor-pointer bg-[var(--color-accent1)] p-6 h-full flex flex-col"
+      className="border border-transparent hover:border-white/30 transition-all duration-300 cursor-pointer bg-(--color-accent1) p-6 h-full flex flex-col"
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -180,11 +181,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
         <h2 className="text-2xl font-bold mb-5">{project.title}</h2>
       </div>
 
-      <p className="mb-4 flex-grow line-clamp-3">{project.description}</p>
+      <p className="mb-4 grow line-clamp-3">{project.description}</p>
 
       {project.label && (
         <div className="mb-3">
-          <span className="bg-[var(--color-primary)] text-[var(--color-background)] text-xs px-3 py-1">
+          <span className="bg-(--color-primary) text-(--color-background) text-xs px-3 py-1">
             {project.label}
           </span>
         </div>
@@ -198,7 +199,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
           {project.techStack.slice(0, 3).map((tech, index) => (
             <span
               key={index}
-              className="border border-[var(--color-accent2)] text-white/90 text-sm px-2 py-1"
+              className="border border-(--color-accent2) text-white/90 text-sm px-2 py-1"
             >
               {tech}
             </span>
@@ -251,11 +252,11 @@ const ProjectDetailsDialog: React.FC<{
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-10">
       <div
         ref={dialogRef}
-        className="bg-[var(--color-accent1)] p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+        className="bg-(--color-accent1) p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-xl text-white hover:text-[var(--color-accent2)] cursor-pointer transition-colors p-2"
+          className="absolute top-4 right-4 text-xl text-white hover:text-(--color-accent2) cursor-pointer transition-colors p-2"
           aria-label="Close"
         >
           &times;
@@ -265,13 +266,13 @@ const ProjectDetailsDialog: React.FC<{
 
         {project.label && (
           <div className="mb-4">
-            <span className="bg-[var(--color-primary)] text-[var(--color-background)] text-xs px-3 py-1">
+            <span className="bg-(--color-primary) text-(--color-background) text-xs px-3 py-1">
               {project.label}
             </span>
           </div>
         )}
 
-        <p className="mb-6 text-[var(--color-foreground)]">
+        <p className="mb-6 text-(--color-foreground)">
           {project.description}
         </p>
 
@@ -279,7 +280,7 @@ const ProjectDetailsDialog: React.FC<{
           <div>
             {project.contribution && (
               <div className="mb-6">
-                <p className="font-bold mb-2 text-sm text-[var(--color-accent2)]">
+                <p className="font-bold mb-2 text-sm text-(--color-accent2)">
                   My Contribution
                 </p>
                 <p className="text-white/90">{project.contribution}</p>
@@ -289,7 +290,7 @@ const ProjectDetailsDialog: React.FC<{
               {project.duration && (
                 <div className="flex items-center gap-3">
                   <div>
-                    <p className="text-sm font-bold text-[var(--color-accent2)] mb-1">
+                    <p className="text-sm font-bold text-(--color-accent2) mb-1">
                       Duration
                     </p>
                     <p className="">{project.duration}</p>
@@ -300,7 +301,7 @@ const ProjectDetailsDialog: React.FC<{
               {project.client && (
                 <div className="flex items-center gap-3">
                   <div>
-                    <p className="text-sm font-bold text-[var(--color-accent2)] mb-1">
+                    <p className="text-sm font-bold text-(--color-accent2) mb-1">
                       Client
                     </p>
                     <p className="">{project.client}</p>
@@ -309,14 +310,14 @@ const ProjectDetailsDialog: React.FC<{
               )}
             </div>
             <div className="mb-6">
-              <p className="font-bold mb-3 text-sm text-[var(--color-accent2)] flex items-center gap-2">
+              <p className="font-bold mb-3 text-sm text-(--color-accent2) flex items-center gap-2">
                 Tech Stack
               </p>
               <div className="flex flex-wrap gap-2">
                 {project.techStack.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="text-white/90 text-sm px-4 py-2 border border-[var(--color-accent2)]"
+                    className="text-white/90 text-sm px-4 py-2 border border-(--color-accent2)"
                   >
                     {tech}
                   </span>
@@ -346,7 +347,7 @@ const ProjectDetailsDialog: React.FC<{
                 href={project.gitLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[var(--color-accent2)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] text-white px-5 py-2.5 transition-colors duration-300"
+                className="flex items-center gap-2 bg-(--color-accent2) hover:bg-(--color-primary) hover:text-(--color-background) text-white px-5 py-2.5 transition-colors duration-300"
               >
                 <FaGithub /> View Code
               </a>
@@ -356,7 +357,7 @@ const ProjectDetailsDialog: React.FC<{
                 href={project.siteLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[var(--color-accent2)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] text-white px-5 py-2.5 transition-colors duration-300"
+                className="flex items-center gap-2 bg-(--color-accent2) hover:bg-(--color-primary) hover:text-(--color-background) text-white px-5 py-2.5 transition-colors duration-300"
               >
                 <FaExternalLinkAlt /> Live Demo
               </a>
@@ -380,7 +381,7 @@ const ProjectSection: React.FC<{ category: string }> = ({ category }) => {
 
   return (
     <section className="mb-10">
-      <p className="text-2xl font-bold text-[var(--color-foreground)] mb-6">
+      <p className="text-2xl font-bold text-(--color-foreground) mb-6">
         {category}
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -408,7 +409,7 @@ export default function Projects() {
       <div className="w-full p-10">
         <div className="relative">
           <section className="mb-10">
-            <h1 className="text-5xl font-bold text-[var(--color-primary)] mb-10 mt-5">
+            <h1 className="text-5xl font-bold text-(--color-primary) mb-10 mt-5">
               Projects
             </h1>
             {categories.map((category) => (

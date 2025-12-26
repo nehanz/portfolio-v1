@@ -113,8 +113,8 @@ const EDUCATION_DETAILS: EducationItem[] = [
     duration: "2024 - Present",
     details: (
       <div className="text-justify">
-        I have a CGPA of 4.00/4.00. I'm involved in Badminton and IEEE, and I
-        received Dean's List recognition for my performance in both L1S1 and
+        I have a CGPA of 4.00/4.00. I&apos;m involved in Badminton and IEEE, and I
+        received Dean&apos;s List recognition for my performance in both L1S1 and
         L2S1.
       </div>
     ),
@@ -126,7 +126,7 @@ const EDUCATION_DETAILS: EducationItem[] = [
     duration: "2020 - 2023",
     details: (
       <div className="text-justify">
-        I achieved a Z score of 2.519 and earned A's in CMaths, Physics, and
+        I achieved a Z score of 2.519 and earned A&apos;s in CMaths, Physics, and
         ICT. I was also a member of the School Math Society.
       </div>
     ),
@@ -140,7 +140,7 @@ const EDUCATION_DETAILS: EducationItem[] = [
       <div className="text-justify">
         I was a school prefect, where I learned leadership skills and helped
         with various tasks. I also played badminton, which taught me teamwork
-        and discipline. I earned 9 A's in my exams.
+        and discipline. I earned 9 A&apos;s in my exams.
       </div>
     ),
   },
@@ -306,9 +306,9 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
               {title}
             </h3>
           </HoverCardTrigger>
-          <HoverCardContent className="w-80 bg-[var(--color-accent1)] border-white/10">
+          <HoverCardContent className="w-80 bg-(--color-accent1) border-white/10">
             <div className="space-y-1">
-              <p className="text-sm text-[var(--color-foreground)]">
+              <p className="text-sm text-(--color-foreground)">
                 {details}
               </p>
             </div>
@@ -333,8 +333,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 const StatsBox: React.FC = () => {
   return (
     <div className="relative w-fit mx-auto my-25 group">
-      <div className="absolute top-1 left-1 w-full h-full bg-[var(--color-primary)] z-0 group-hover:scale-96 transition-all duration-300 ease-in-out" />
-      <div className="relative flex flex-row gap-12 bg-[var(--color-accent1)] text-[var(--color-foreground)] px-6 py-10 w-fit z-10 cursor-default transition-all duration-500 ease-in-out group-hover:scale-103">
+      <div className="absolute top-1 left-1 w-full h-full bg-(--color-primary) z-0 group-hover:scale-96 transition-all duration-300 ease-in-out" />
+      <div className="relative flex flex-row gap-12 bg-(--color-accent1) text-(--color-foreground) px-6 py-10 w-fit z-10 cursor-default transition-all duration-500 ease-in-out group-hover:scale-103">
       <StatItem
         value="3+"
         label="Years of coding experience"
@@ -360,7 +360,7 @@ const StatItem: React.FC<{
 }> = ({ value, label, description }) => (
   <div className="flex flex-col items-center mx-4">
     <div className="flex flex-row items-center">
-      <div className="text-[var(--color-primary)] text-5xl font-extrabold mb-1 font-mono">
+      <div className="text-(--color-primary) text-5xl font-extrabold mb-1 font-mono">
         {value}
       </div>
       <div className="text-base font-medium opacity-80 text-center ml-2">
@@ -389,10 +389,10 @@ const HobbyHoverCard: React.FC<HobbyHoverCardProps> = ({
           />
         </span>
       </HoverCardTrigger>
-      <HoverCardContent className="w-80 bg-[var(--color-accent1)] border-white/10">
+      <HoverCardContent className="w-80 bg-(--color-accent1) border-white/10">
         <div className="space-y-1">
-          <h4 className="text-md text-[var(--color-foreground)]">{title}</h4>
-          <ul className="list-disc list-inside text-xs text-[var(--color-foreground)]">
+          <h4 className="text-md text-(--color-foreground)">{title}</h4>
+          <ul className="list-disc list-inside text-xs text-(--color-foreground)">
             {items.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
@@ -422,7 +422,7 @@ const SectionExperience: React.FC<SectionProps> = ({ title, items, type }) => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-4xl font-bold text-[var(--color-primary)] mb-10">
+      <h2 className="text-4xl font-bold text-(--color-primary) mb-10">
         {title}
       </h2>
 
@@ -442,8 +442,8 @@ const Introduction: React.FC = () => {
   return (
     <>
       <p className="text-lg tracking-wider text-justify mb-10">
-        Hi, I'm Nehan Wijayagunarathna — a second-year Information Technology
-        student at the University of Moratuwa. I'm passionate about
+        Hi, I&apos;m Nehan Wijayagunarathna — a second-year Information Technology
+        student at the University of Moratuwa. I&apos;m passionate about
         understanding how systems work behind the scenes and building reliable,
         scalable applications. My experience spans full-stack development and
         DevOps, with a focus on creating production-ready solutions. I enjoy
@@ -455,7 +455,7 @@ const Introduction: React.FC = () => {
         As a member of the Rotaract IT team, I contribute to software projects
         and collaborate on various initiatives. I also tutor computer science,
         helping students master programming concepts. These roles have honed my
-        teamwork, communication, and problem-solving abilities. I'm always eager
+        teamwork, communication, and problem-solving abilities. I&apos;m always eager
         for new opportunities to learn and contribute to meaningful projects.
       </p>
     </>
@@ -487,7 +487,7 @@ const Certifications: React.FC = () => {
 
   return (
     <div className="mt-20">
-      <h2 className="text-4xl font-bold text-[var(--color-primary)] mb-10">
+      <h2 className="text-4xl font-bold text-(--color-primary) mb-10">
         Certifications
       </h2>
       <div className="flex flex-row gap-6 flex-wrap">
@@ -568,7 +568,7 @@ const SkillSection: React.FC = () => {
     }
     acc[category].push({ skill, icon });
     return acc;
-  }, {} as Record<string, Array<{ skill: string; icon: any }>>);
+  }, {} as Record<string, Array<{ skill: string; icon: unknown }>>);
 
   return (
     <div className="mt-20">
@@ -614,23 +614,23 @@ const HighlightSection: React.FC = () => {
     <div className="mt-20 flex flex-col justify-center">
       <div>
         {" "}
-        <h2 className="text-4xl font-bold text-[var(--color-primary)] mb-20">
+        <h2 className="text-4xl font-bold text-(--color-primary) mb-20">
           Highlights
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {HighlightItems.map((item, idx) => (
             <div
               key={idx}
-              className="group relative overflow-hidden border border-transparent hover:border-white/30 transition-all duration-300 cursor-default bg-[var(--color-accent1)]"
+              className="group relative overflow-hidden border border-transparent hover:border-white/30 transition-all duration-300 cursor-default bg-(--color-accent1)"
             >
               <div className="p-6">
-                <p className="text-lg font-bold mb-2 text-[var(--color-foreground)]">
+                <p className="text-lg font-bold mb-2 text-(--color-foreground)">
                   {item.title}
                 </p>
                 <p className="text-sm opacity-70 mb-4">
                   Organized by {item.organizedBy}
                 </p>
-                <p className="text-sm text-[var(--color-foreground)] text-justify">
+                <p className="text-sm text-(--color-foreground) text-justify">
                   {item.description}
                 </p>
               </div>
@@ -658,7 +658,7 @@ export default function About() {
       <div className="w-full p-10">
         <div className="relative">
           <section className="min-h-screen">
-            <h1 className="text-5xl font-bold mb-10 text-[var(--color-primary)] mt-5">
+            <h1 className="text-5xl font-bold mb-10 text-(--color-primary) mt-5">
               About Me
             </h1>
 
