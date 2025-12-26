@@ -181,7 +181,7 @@ export default function Contact() {
           <section className="flex flex-col justify-center items-center h-full">
             <div className="grid lg:grid-cols-2 gap-6">
               <div className="flex flex-col gap-4">
-                <h1 className="text-5xl font-bold text-[var(--color-primary)] mb-10 mt-5">
+                <h1 className="text-5xl font-bold text-(--color-primary) mb-10 mt-5">
                   Get in touch
                 </h1>
                 <p className="text-lg pr-5">
@@ -203,7 +203,7 @@ export default function Contact() {
                         }
                         aria-label={`Connect via ${label}`}
                       >
-                        <div className="flex items-center gap-3 bg-[var(--color-accent1)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] p-2 w-40 justify-center hover:border-[var(--color-primary)] transition-all duration-300">
+                        <div className="flex items-center gap-3 bg-(--color-accent1) hover:bg-(--color-primary) hover:text-(--color-background) p-2 w-40 justify-center hover:border-(--color-primary) transition-all duration-300">
                           {icon}
                           {label}
                         </div>
@@ -213,7 +213,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-4 bg-[var(--color-accent1)] px-6 pt-5 mt-10 h-full">
+              <div className="flex flex-col gap-4 bg-(--color-accent1) px-6 pt-5 mt-10 h-full">
                 <h2 className="text-3xl font-semibold mb-4">Send a Message</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-10" noValidate>
@@ -341,8 +341,8 @@ export default function Contact() {
                     disabled={isSubmitting}
                     className={`w-full mt-10 py-3 px-4 font-medium ${
                       isSubmitting
-                        ? "bg-[var(--color-accent2)] cursor-not-allowed hover:cursor-not-allowed"
-                        : "bg-[var(--color-primary)] hover:bg-[var(--color-accent2)] text-[var(--color-background)] hover:text-[var(--color-foreground)] transition-all duration-300 cursor-pointer"
+                        ? "bg-(--color-accent2) cursor-not-allowed hover:cursor-not-allowed"
+                        : "bg-(--color-primary) hover:bg-(--color-accent2) text-(--color-background) hover:text-(--color-foreground) transition-all duration-300 cursor-pointer"
                     } transition duration-300`}
                     aria-label={
                       isSubmitting ? "Sending message" : "Send message"

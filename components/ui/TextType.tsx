@@ -170,10 +170,15 @@ const TextType = ({
   const shouldHideCursor =
     hideCursorWhileTyping && (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
 
+  // Assign ref via callback to avoid accessing .current during render
+  const setContainerRef = useCallback((node: HTMLElement | null) => {
+    containerRef.current = node;
+  }, []);
+
   return createElement(
     Component,
     {
-      ref: containerRef,
+      ref: setContainerRef,
       className: `inline-block whitespace-pre-wrap tracking-tight ${className}`,
       ...props
     },
