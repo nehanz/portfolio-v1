@@ -1,6 +1,6 @@
 'use client';
 
-import { ElementType, useEffect, useRef, useState, createElement, useMemo, useCallback } from 'react';
+import { ElementType, useEffect, useRef, useState, createElement, useMemo, useCallback, forwardRef } from 'react';
 import { gsap } from 'gsap';
 
 interface TextTypeProps {
@@ -24,27 +24,30 @@ interface TextTypeProps {
   reverseMode?: boolean;
 }
 
-const TextType = ({
-  text,
-  as: Component = 'div',
-  typingSpeed = 50,
-  initialDelay = 0,
-  pauseDuration = 2000,
-  deletingSpeed = 30,
-  loop = true,
-  className = '',
-  showCursor = true,
-  hideCursorWhileTyping = false,
-  cursorCharacter = '|',
-  cursorClassName = '',
-  cursorBlinkDuration = 0.5,
-  textColors = [],
-  variableSpeed,
-  onSentenceComplete,
-  startOnVisible = false,
-  reverseMode = false,
-  ...props
-}: TextTypeProps & React.HTMLAttributes<HTMLElement>) => {
+const TextType = forwardRef<HTMLElement, TextTypeProps & React.HTMLAttributes<HTMLElement>>((
+  {
+    text,
+    as: Component = 'div',
+    typingSpeed = 50,
+    initialDelay = 0,
+    pauseDuration = 2000,
+    deletingSpeed = 30,
+    loop = true,
+    className = '',
+    showCursor = true,
+    hideCursorWhileTyping = false,
+    cursorCharacter = '|',
+    cursorClassName = '',
+    cursorBlinkDuration = 0.5,
+    textColors = [],
+    variableSpeed,
+    onSentenceComplete,
+    startOnVisible = false,
+    reverseMode = false,
+    ...props
+  },
+  ref
+) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -170,10 +173,13 @@ const TextType = ({
   const shouldHideCursor =
     hideCursorWhileTyping && (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
 
+  // Use provided ref or fallback to containerRef
+  const targetRef = ref || containerRef;
+
   return createElement(
     Component,
     {
-      ref: containerRef,
+      ref: targetRef,
       className: `inline-block whitespace-pre-wrap tracking-tight ${className}`,
       ...props
     },
@@ -189,6 +195,8 @@ const TextType = ({
       </span>
     )
   );
-};
+});
+
+TextType.displayName = 'TextType';
 
 export default TextType;

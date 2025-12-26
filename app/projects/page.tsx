@@ -20,7 +20,7 @@ import project6 from "@/public/images/project6.png";
 interface ProjectData {
   title: string;
   description: string;
-  imageSrc?: String | StaticImageData;
+  imageSrc?: string | StaticImageData;
   gitLink?: string;
   siteLink?: string;
   techStack: string[];
