@@ -122,25 +122,38 @@ export default function DesktopNavbar() {
     },
   ];
 
+  const activeIndex = navItems.findIndex((item) => item.href === pathname);
+  const navItemHeight = 56;
+
   return (
-    <aside className="w-14 h-full bg-(--color-accent1) flex flex-col items-center justify-between shrink-0">
-      <nav className="w-full">
-        <ul>
-          {navItems.map((item) => (
+    <aside className="w-14 h-full bg-[--color-accent1] flex flex-col items-center justify-between shrink-0">
+      <nav className="relative w-full">
+        <div className="absolute left-0 w-full h-14 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-0"
+          style={{
+            background: 'var(--color-primary)',
+            transform: `translateY(${activeIndex * navItemHeight}px)`,
+            height: `${navItemHeight}px`,
+          }}
+        />
+
+        <ul className="relative z-10">
+          {navItems.map((item, index) => (
             <li
               key={item.name}
-              className={`py-2 ${
-                pathname === item.href
-                  ? "bg-(--color-primary) text-(--color-background)"
-                  : "hover:bg-(--color-secondary) text-(--color-foreground) transition-all duration-300"
-              }`}
+              className={`group relative transition-all duration-300 hover:bg-[var-(--color-secondary)]`}
             >
               <Link
                 href={item.href}
-                className={`flex items-center justify-center w-full h-10 transition-all `}
+                className={`flex items-center justify-center w-full h-14 transition-all duration-300 ${
+                  pathname === item.href
+                    ? "text-(--color-background)"
+                    : "text-(--color-foreground) hover:bg-(--color-secondary)"
+                }`}
                 title={item.name}
-              >
-                {item.icon}
+              >                
+                <div className="relative z-10">
+                  {item.icon}
+                </div>
               </Link>
             </li>
           ))}
