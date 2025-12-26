@@ -9,7 +9,7 @@ import Image from "next/image";
 import certificate1 from "@/public/images/certificate1.png";
 import certificate2 from "@/public/images/certificate2.png";
 import certificate3 from "@/public/images/certificate3.png";
-import { icons } from "lucide-react";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 {
 }
@@ -568,7 +568,7 @@ const SkillSection: React.FC = () => {
     }
     acc[category].push({ skill, icon });
     return acc;
-  }, {} as Record<string, Array<{ skill: string; icon: unknown }>>);
+  }, {} as Record<string, Array<{ skill: string; icon: string | StaticImport }>>);
 
   return (
     <div className="mt-20">
@@ -590,7 +590,7 @@ const SkillSection: React.FC = () => {
                 >
                   <span className="inline-block w-5 h-5 mr-2 align-middle relative">
                     <Image
-                      src={icon}
+                      src={icon as string | StaticImport}
                       alt={skill}
                       fill
                       className="object-contain invert"
