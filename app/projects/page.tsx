@@ -1,5 +1,20 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+// Animation variants for staggered fade-in
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+};
+
+const fadeInVariant = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 import {
   FaGithub,
   FaExternalLinkAlt,
@@ -369,27 +384,34 @@ const ProjectDetailsDialog: React.FC<{
 };
 
 const ProjectSection: React.FC<{ category: string }> = ({ category }) => {
-  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(
-    null
-  );
-  const filteredProjects = PROJECT_DATA.filter(
-    (project) => project.category === category
-  );
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
+  const filteredProjects = PROJECT_DATA.filter((project) => project.category === category);
+
+  // Scroll trigger animation
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
 
   if (filteredProjects.length === 0) return null;
 
   return (
-    <section className="mb-10">
-      <p className="text-2xl font-bold text-[var(--color-foreground)] mb-6">
+    <motion.section
+      ref={ref}
+      className="mb-10"
+      variants={containerVariants}
+      initial="hidden"
+      animate={inView ? "show" : "hidden"}
+    >
+      <motion.p className="text-2xl font-bold text-[var(--color-foreground)] mb-6" variants={fadeInVariant}>
         {category}
-      </p>
+      </motion.p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProjects.map((project, idx) => (
-          <ProjectCard
-            key={idx}
-            project={project}
-            onClick={() => setSelectedProject(project)}
-          />
+          <motion.div key={idx} variants={fadeInVariant}>
+            <ProjectCard
+              project={project}
+              onClick={() => setSelectedProject(project)}
+            />
+          </motion.div>
         ))}
       </div>
       <ProjectDetailsDialog
@@ -397,26 +419,31 @@ const ProjectSection: React.FC<{ category: string }> = ({ category }) => {
         open={!!selectedProject}
         onClose={() => setSelectedProject(null)}
       />
-    </section>
+    </motion.section>
   );
 };
 
 export default function Projects() {
   const categories = Array.from(new Set(PROJECT_DATA.map((p) => p.category)));
   return (
-    <div className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+    <motion.div
+      className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+    >
       <div className="w-full p-10">
         <div className="relative">
-          <section className="mb-10">
-            <h1 className="text-5xl font-bold text-[var(--color-primary)] mb-10 mt-5">
+          <motion.section className="mb-10" variants={containerVariants} initial="hidden" animate="show">
+            <motion.h1 className="text-5xl font-bold text-[var(--color-primary)] mb-10 mt-5" variants={fadeInVariant}>
               Projects
-            </h1>
+            </motion.h1>
             {categories.map((category) => (
               <ProjectSection key={category} category={category} />
             ))}
-          </section>
+          </motion.section>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

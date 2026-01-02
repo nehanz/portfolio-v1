@@ -1,5 +1,9 @@
 "use client";
 import * as React from "react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+
 import {
   HoverCard,
   HoverCardTrigger,
@@ -104,6 +108,21 @@ interface SectionProps {
   items: Array<EducationItem | ExperienceItem>;
   type: "education" | "experience";
 }
+
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.50,
+    },
+  },
+};
+
+const fadeInVariant = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
 const EDUCATION_DETAILS: EducationItem[] = [
   {
@@ -260,9 +279,8 @@ const SkillsList = [
   { skill: "Illustrator", category: "Other Tools", icon: illustratorIcon },
   { skill: "Photoshop", category: "Other Tools", icon: photoshopIcon },
   { skill: "Premiere Pro", category: "Other Tools", icon: premiereprIcon },
-  { skill: "After Effects", category: "Other Tools", icon: aftereffectsIcon },  
+  { skill: "After Effects", category: "Other Tools", icon: aftereffectsIcon },
   { skill: "Postman", category: "Other Tools", icon: postmanIcon },
-
 ];
 
 const HighlightItems = [
@@ -335,19 +353,19 @@ const StatsBox: React.FC = () => {
     <div className="relative w-fit mx-auto my-25 group">
       <div className="absolute top-1 left-1 w-full h-full bg-[var(--color-primary)] z-0 group-hover:scale-96 transition-all duration-300 ease-in-out" />
       <div className="relative flex flex-row gap-12 bg-[var(--color-accent1)] text-[var(--color-foreground)] px-6 py-10 w-fit z-10 cursor-default transition-all duration-500 ease-in-out group-hover:scale-103">
-      <StatItem
-        value="3+"
-        label="Years of coding experience"
-        description="Developing solid programming skills through continuous learning"
-      />
+        <StatItem
+          value="3+"
+          label="Years of coding experience"
+          description="Developing solid programming skills through continuous learning"
+        />
 
-      <div className="w-px bg-white/20 self-stretch transition-all duration-300" />
+        <div className="w-px bg-white/20 self-stretch transition-all duration-300" />
 
-      <StatItem
-        value="5+"
-        label="Projects completed"
-        description="Building reliable and scalable solutions through hands-on development"
-      />
+        <StatItem
+          value="5+"
+          label="Projects completed"
+          description="Building reliable and scalable solutions through hands-on development"
+        />
       </div>
     </div>
   );
@@ -577,33 +595,44 @@ const SkillSection: React.FC = () => {
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {Object.entries(groupedSkills).map(([category, skills]) => (
-          <div key={category} className="border-b border-white/10 pb-6">
-            <p className="text-lg font-medium mb-4 text-(--color-accent2)">
-              {category}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {skills.map(({ skill, icon }, index) => (
-                <div
-                  key={index}
-                  className="px-4 py-2 border border-(--color-accent1) hover:border-white/60  transition-all duration-300 cursor-default"
-                >
-                  <span className="inline-block w-5 h-5 mr-2 align-middle relative">
-                    <Image
-                      src={icon}
-                      alt={skill}
-                      fill
-                      className="object-contain invert"
-                    />
-                  </span>
-                  <span className="text-sm font-medium font-color-accent">
-                    {skill}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+        {Object.entries(groupedSkills).map(([category, skills], idx) => {
+          const ref = useRef(null);
+          const inView = useInView(ref, { once: true, amount: 0.7 });
+          return (
+            <motion.div
+              key={category}
+              ref={ref}
+              className="border-b border-white/10 pb-6"
+              initial="hidden"
+              animate={inView ? "show" : "hidden"}
+              variants={fadeInVariant}
+            >
+              <p className="text-lg font-medium mb-4 text-(--color-accent2)">
+                {category}
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {skills.map(({ skill, icon }, index) => (
+                  <div
+                    key={index}
+                    className="px-4 py-2 border border-(--color-accent1) hover:border-white/60  transition-all duration-300 cursor-default"
+                  >
+                    <span className="inline-block w-5 h-5 mr-2 align-middle relative">
+                      <Image
+                        src={icon}
+                        alt={skill}
+                        fill
+                        className="object-contain invert"
+                      />
+                    </span>
+                    <span className="text-sm font-medium font-color-accent">
+                      {skill}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
@@ -638,65 +667,122 @@ const HighlightSection: React.FC = () => {
           ))}
         </div>
         <div className="flex flex-col items-center mt-10">
-            <button
+          <button
             className="border border-white/10 px-4 py-2 hover:border-white/30 transition-all duration-300 cursor-pointer mt-8 text-sm font-semibold"
             onClick={() => {
               window.open("https://www.linkedin.com/in/nehanz/", "_blank");
             }}
-            >
+          >
             View More
-            </button>
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default function About() {
+function About() {
+  // Scroll trigger animation for each section
+  const aboutRef = useRef(null);
+  const aboutInView = useInView(aboutRef, { once: true });
+  const expRef = useRef(null);
+  const expInView = useInView(expRef, { once: true });
+  const skillRef = useRef(null);
+  const skillInView = useInView(skillRef, { once: true });
+  const highlightRef = useRef(null);
+  const highlightInView = useInView(highlightRef, { once: true, amount: 0.1});
+  
+
   return (
-    <div className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+    <motion.div
+      className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+    >
       <div className="w-full p-10">
         <div className="relative">
-          <section className="min-h-screen">
-            <h1 className="text-5xl font-bold mb-10 text-[var(--color-primary)] mt-5">
+          <motion.section
+            ref={aboutRef}
+            className="min-h-screen"
+            variants={containerVariants}
+            initial="hidden"
+            animate={aboutInView ? "show" : "hidden"}
+          >
+            <motion.h1
+              className="text-5xl font-bold mb-10 text-[var(--color-primary)] mt-5"
+              variants={fadeInVariant}
+            >
               About Me
-            </h1>
+            </motion.h1>
+            <motion.div variants={fadeInVariant}>
+              <Introduction />
+            </motion.div>
+            <motion.div variants={fadeInVariant}>
+              <StatsBox />
+            </motion.div>
+            <motion.div variants={fadeInVariant}>
+              <HobbiesSection />
+            </motion.div>
+          </motion.section>
 
-            <Introduction />
-            <StatsBox />
-            <HobbiesSection />
-          </section>
-
-          <section className="min-h-screen">
+          <motion.section
+            ref={expRef}
+            className="min-h-screen"
+            variants={containerVariants}
+            initial="hidden"
+            animate={expInView ? "show" : "hidden"}
+          >
             <div className="w-full h-full">
               <div className="grid grid-cols-2 gap-8">
-                <SectionExperience
-                  title="Education"
-                  items={EDUCATION_DETAILS}
-                  type="education"
-                />
-
-                <SectionExperience
-                  title="Experience"
-                  items={EXPERIENCE_DETAILS}
-                  type="experience"
-                />
+                <motion.div variants={fadeInVariant}>
+                  <SectionExperience
+                    title="Education"
+                    items={EDUCATION_DETAILS}
+                    type="education"
+                  />
+                </motion.div>
+                <motion.div variants={fadeInVariant}>
+                  <SectionExperience
+                    title="Experience"
+                    items={EXPERIENCE_DETAILS}
+                    type="experience"
+                  />
+                </motion.div>
               </div>
-              <div className="mt-10">
+              <motion.div className="mt-10" variants={fadeInVariant}>
                 <Certifications />
-              </div>
+              </motion.div>
             </div>
-          </section>
+          </motion.section>
 
-          <section className="min-h-screen">
-            <SkillSection />
-          </section>
+          <motion.section
+            ref={skillRef}
+            className="min-h-screen"
+            variants={containerVariants}
+            initial="hidden"
+            animate={skillInView ? "show" : "hidden"}
+          >
+            <motion.div variants={fadeInVariant}>
+              <SkillSection />
+            </motion.div>
+          </motion.section>
 
-          <section className="min-h-screen">
-            <HighlightSection />
-          </section>
+          <motion.section
+            ref={highlightRef}
+            className="min-h-screen"
+            variants={containerVariants}
+            initial="hidden"
+            animate={highlightInView ? "show" : "hidden"}
+          >
+            <motion.div variants={fadeInVariant}>
+              <HighlightSection />
+            </motion.div>
+          </motion.section>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
+
+export default About;

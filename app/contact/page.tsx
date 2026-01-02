@@ -1,5 +1,20 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
+// Animation variants for staggered fade-in
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+};
+
+const fadeInVariant = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 import emailjs from "@emailjs/browser";
 import { MdEmail } from "react-icons/md";
 import { FaWhatsapp, FaFacebook, FaInstagram } from "react-icons/fa";
@@ -159,7 +174,12 @@ export default function Contact() {
   ];
 
   return (
-    <div className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+    <motion.div
+      className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+    >
       {/* prevent autofill background color */}
       <style jsx global>{`
         input:-webkit-autofill,
@@ -178,9 +198,9 @@ export default function Contact() {
       `}</style>
       <div className="w-full p-10">
         <div className="flex flex-col justify-center items-center h-full">
-          <section className="flex flex-col justify-center items-center h-full">
+          <motion.section className="flex flex-col justify-center items-center h-full" variants={containerVariants} initial="hidden" animate="show">
             <div className="grid lg:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-4">
+              <motion.div className="flex flex-col gap-4" variants={fadeInVariant}>
                 <h1 className="text-5xl font-bold text-[var(--color-primary)] mb-10 mt-5">
                   Get in touch
                 </h1>
@@ -211,9 +231,9 @@ export default function Contact() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex flex-col gap-4 bg-[var(--color-accent1)] px-6 pt-5 mt-10 h-full">
+              <motion.div className="flex flex-col gap-4 bg-[var(--color-accent1)] px-6 pt-5 mt-10 h-full" variants={fadeInVariant}>
                 <h2 className="text-3xl font-semibold mb-4">Send a Message</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-10" noValidate>
@@ -352,11 +372,11 @@ export default function Contact() {
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </button>
                 </form>
-              </div>
+              </motion.div>
             </div>
-          </section>
+          </motion.section>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

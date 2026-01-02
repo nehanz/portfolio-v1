@@ -1,8 +1,26 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import "./globals.css";
 
 import RoleType from "@/components/RoleType";
+
+import { motion, useInView } from "framer-motion";
+
+// Animation variants for staggered fade-in
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+};
+
+const fadeInVariant = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
 
 export default function Home() {
   const leftColumnRef = useRef<HTMLDivElement>(null);
@@ -10,6 +28,8 @@ export default function Home() {
   const [grayscaleValue, setGrayscaleValue] = useState(0);
   const [imageOpacity, setImageOpacity] = useState(1);
   const [mouseOffset, setMouseOffset] = useState({ x: 5, y: 5 });
+
+
 
   useEffect(() => {
     // visit first
@@ -106,35 +126,39 @@ export default function Home() {
 
   return (
     <>
+      {/* Desktop Layout */}
       <div className="hidden md:block w-full h-screen relative">
         <div
           className="pl-20 absolute right-5 top-0 w-1/2 h-screen flex items-center justify-center"
           style={{ zIndex: 1 }}
         >
-            <div className="relative w-[500px] h-[500px]">
+          <div className="relative w-[500px] h-[500px]">
             {/* Moveable bg-primary div */}
-            <div
+            <motion.div
               className="absolute w-full h-full bg-(--color-primary) pointer-events-none"
               style={{
               top: 0,
               left: 0,
-              transform: `translate(${mouseOffset.x}px, ${mouseOffset.y}px)`,
-              transition: "transform 0.3s linear",
               }}
-            ></div>
+              animate={{
+              x: mouseOffset.x,
+              y: mouseOffset.y,
+              }}
+              transition={{ duration: 0.3 }}
+            ></motion.div>
             <div className="absolute top-0 left-0 w-full h-full bg-(--color-accent1) overflow-hidden">
               <img
-              src="/images/PortfolioImg.png"
-              alt="Profile Picture"
-              className="w-full h-full object-cover transition-all duration-300 ease-out"
-              style={{ filter: `grayscale(${grayscaleValue}%)` }}
+                src="/images/PortfolioImg.png"
+                alt="Profile Picture"
+                className="w-full h-full object-cover transition-all duration-300 ease-out"
+                style={{ filter: `grayscale(${grayscaleValue}%)` }}
               />
             </div>
-            </div>
+          </div>
         </div>
 
         {/* Scrollable */}
-        <div
+        <motion.div
           ref={leftColumnRef}
           className="absolute left-10 top-0 w-1/2 h-screen overflow-y-scroll scroll-smooth"
           style={{
@@ -142,6 +166,9 @@ export default function Home() {
             msOverflowStyle: "none",
             zIndex: 10,
           }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
         >
           <style jsx>{`
             div::-webkit-scrollbar {
@@ -150,25 +177,25 @@ export default function Home() {
           `}</style>
 
           <div className="min-h-screen flex flex-col justify-center gap-5">
-            <div className="text-4xl font-bold tracking-wider">
+            <motion.div variants={fadeInVariant} className="text-4xl font-bold tracking-wider">
               <h1 className="text-9xl font-bold tracking-wider text-(--color-primary)">
                 Nehan
               </h1>
               <h1 className="text-7xl font-bold mb-6 tracking-wider text-(--color-primary)">
                 Wijayagunarathna
               </h1>
-            </div>
-            <div className="text-3xl font-semibold max-w-lg text-(--color-accent2) mb-10">
+            </motion.div>
+            <motion.div variants={fadeInVariant} className="text-3xl font-semibold max-w-lg text-(--color-accent2) mb-10">
               <RoleType />
-            </div>
-            <div className="text-lg max-w-lg">
+            </motion.div>
+            <motion.div variants={fadeInVariant} className="text-lg max-w-lg">
               An Information Technology undergraduate skilled in Devops
               engineering. Experienced in building user-focused applications
               through collaborative projects, with strong attention to detail
               and a focus on scalable solutions. Proven ability to contribute
               effectively in team settings.
-            </div>
-            <div>
+            </motion.div>
+            <motion.div variants={fadeInVariant}>
               <a
                 href="https://drive.google.com/drive/folders/18A-tg5YCdFeTAMxAyIPGn-FeYkGgYbKS?usp=sharing"
                 target="_blank"
@@ -177,10 +204,10 @@ export default function Home() {
               >
                 Download CV
               </a>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="min-h-screen flex items-center justify-center">
+          <motion.div variants={fadeInVariant} className="min-h-screen flex items-center justify-center">
             <blockquote
               className="text-4xl font-bold text-(--color-foreground) italic border-l-3 pl-6"
               style={{ borderLeftColor: "var(--color-accent1)" }}
@@ -191,8 +218,8 @@ export default function Home() {
                 — Tyrion Lannister
               </p>
             </blockquote>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Mobile Layout */}
@@ -222,10 +249,13 @@ export default function Home() {
         />
 
         {/* Scrollable Content */}
-        <div
+        <motion.div
           ref={mobileColumnRef}
           className="w-full h-screen overflow-y-scroll scroll-smooth relative"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
         >
           <style jsx>{`
             div::-webkit-scrollbar {
@@ -235,18 +265,18 @@ export default function Home() {
 
           {/* Section 1 */}
           <div className="min-h-screen flex flex-col px-6 py-20 relative z-20 pointer-events-auto gap-5">
-            <div className="mb-8">
+            <motion.div variants={fadeInVariant} className="mb-8">
               <h1 className="text-7xl font-bold tracking-wider text-(--color-primary) mb-2">
                 Nehan
               </h1>
               <h1 className="text-5xl font-bold tracking-wider text-(--color-primary)">
                 Wijayagunarathna
               </h1>
-            </div>
-            <div className="text-3xl font-semibold max-w-lg text-(--color-accent2) mb-10">
+            </motion.div>
+            <motion.div variants={fadeInVariant} className="text-3xl font-semibold max-w-lg text-(--color-accent2) mb-10">
               <RoleType />
-            </div>
-            <div className=" flex flex-col gap-10">
+            </motion.div>
+            <motion.div variants={fadeInVariant} className="flex flex-col gap-10">
               <p className="text-base mb-6">
                 An Information Technology undergraduate skilled in Devops
                 engineering. Experienced in building user-focused applications
@@ -262,11 +292,11 @@ export default function Home() {
               >
                 Download CV
               </a>
-            </div>
+            </motion.div>
           </div>
 
           {/* Section 2 - Quote */}
-          <div className="min-h-screen flex justify-center px-6 p-32 relative z-20 pointer-events-auto">
+          <motion.div variants={fadeInVariant} className="min-h-screen flex justify-center px-6 p-32 relative z-20 pointer-events-auto">
             <div className="flex flex-col gap-10 w-full">
               <blockquote className="text-4xl font-semibold text-(--color-foreground) italic text-center">
                 “Never forget what you are. The world will not. Wear it like
@@ -276,8 +306,8 @@ export default function Home() {
                 </p>
               </blockquote>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </>
   );
