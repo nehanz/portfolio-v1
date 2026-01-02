@@ -29,8 +29,6 @@ export default function Home() {
   const [imageOpacity, setImageOpacity] = useState(1);
   const [mouseOffset, setMouseOffset] = useState({ x: 5, y: 5 });
 
-
-
   useEffect(() => {
     // visit first
     const hasVisited = sessionStorage.getItem("visitedHome");
@@ -48,6 +46,13 @@ export default function Home() {
         });
       }
       sessionStorage.setItem("visitedHome", "true");
+    }
+
+    if (hasVisited && mobileColumnRef.current) {
+      const scrollTop = mobileColumnRef.current.scrollTop;
+      if (scrollTop < 5) {
+        setImageOpacity(0.2);
+      }
     }
 
     // Desktop grayscale
@@ -90,7 +95,6 @@ export default function Home() {
         }
       }
     };
-
 
     const handleMouseMove = (e: MouseEvent) => {
       const containerWidth = 500;
@@ -137,12 +141,12 @@ export default function Home() {
             <motion.div
               className="absolute w-full h-full bg-(--color-primary) pointer-events-none"
               style={{
-              top: 0,
-              left: 0,
+                top: 0,
+                left: 0,
               }}
               animate={{
-              x: mouseOffset.x,
-              y: mouseOffset.y,
+                x: mouseOffset.x,
+                y: mouseOffset.y,
               }}
               transition={{ duration: 0.3 }}
             ></motion.div>
@@ -177,7 +181,10 @@ export default function Home() {
           `}</style>
 
           <div className="min-h-screen flex flex-col justify-center gap-5">
-            <motion.div variants={fadeInVariant} className="text-4xl font-bold tracking-wider">
+            <motion.div
+              variants={fadeInVariant}
+              className="text-4xl font-bold tracking-wider"
+            >
               <h1 className="text-9xl font-bold tracking-wider text-(--color-primary)">
                 Nehan
               </h1>
@@ -185,7 +192,10 @@ export default function Home() {
                 Wijayagunarathna
               </h1>
             </motion.div>
-            <motion.div variants={fadeInVariant} className="text-3xl font-semibold max-w-lg text-(--color-accent2) mb-10">
+            <motion.div
+              variants={fadeInVariant}
+              className="text-3xl font-semibold max-w-lg text-(--color-accent2) mb-10"
+            >
               <RoleType />
             </motion.div>
             <motion.div variants={fadeInVariant} className="text-lg max-w-lg">
@@ -207,7 +217,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          <motion.div variants={fadeInVariant} className="min-h-screen flex items-center justify-center">
+          <div className="min-h-screen flex items-center justify-center">
             <blockquote
               className="text-4xl font-bold text-(--color-foreground) italic border-l-3 pl-6"
               style={{ borderLeftColor: "var(--color-accent1)" }}
@@ -218,7 +228,7 @@ export default function Home() {
                 — Tyrion Lannister
               </p>
             </blockquote>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
 
@@ -272,10 +282,16 @@ export default function Home() {
                 Wijayagunarathna
               </h1>
             </motion.div>
-            <motion.div variants={fadeInVariant} className="text-3xl font-semibold max-w-lg text-(--color-accent2) mb-10">
+            <motion.div
+              variants={fadeInVariant}
+              className="text-3xl font-semibold max-w-lg text-(--color-accent2) mb-10"
+            >
               <RoleType />
             </motion.div>
-            <motion.div variants={fadeInVariant} className="flex flex-col gap-10">
+            <motion.div
+              variants={fadeInVariant}
+              className="flex flex-col gap-10"
+            >
               <p className="text-base mb-6">
                 An Information Technology undergraduate skilled in Devops
                 engineering. Experienced in building user-focused applications
@@ -295,7 +311,7 @@ export default function Home() {
           </div>
 
           {/* Section 2 - Quote */}
-          <motion.div variants={fadeInVariant} className="min-h-screen flex justify-center px-6 p-32 relative z-20 pointer-events-auto">
+          <div className="min-h-screen flex justify-center px-6 p-32 relative z-20 pointer-events-auto">
             <div className="flex flex-col gap-10 w-full">
               <blockquote className="text-4xl font-semibold text-(--color-foreground) italic text-center">
                 “Never forget what you are. The world will not. Wear it like
@@ -305,7 +321,7 @@ export default function Home() {
                 </p>
               </blockquote>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </>

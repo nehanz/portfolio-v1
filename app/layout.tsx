@@ -1,6 +1,10 @@
+'use client';
 import localFont from "next/font/local";
 import "./globals.css";
+
 import DesktopNavbar from "@/components/DesktopNavbar";
+import Loader from "@/components/Loader";
+import { useEffect, useState } from "react";
 
 const formaDJR = localFont({
   src: [
@@ -39,18 +43,33 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setHydrated(true);
+    }, 1500);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <html lang="en" className={`${formaDJR.variable} ${neuePlak.variable}`}>
       <body className={`${formaDJR.className} overflow-hidden`}>
-        <div className="relative h-screen overflow-hidden">
-          {/* Desktop Navbar - Hidden on mobile */}
-          <div className="hidden md:block absolute left-15 z-10 h-full bg-(--color-accent1)">
-            <DesktopNavbar />
+        {!hydrated ? (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--color-background)]">
+            <Loader />
           </div>
-          <main className="bg-(--color-secondary) md:mx-15 md:mb-10 md:px-20 h-screen">
-            <div>{children}</div>
-          </main>
-        </div>
+        ) : (
+          <div className="relative h-screen overflow-hidden">
+            {/* Desktop Navbar - Hidden on mobile */}
+            <div className="hidden md:block absolute left-15 z-10 h-full bg-(--color-accent1)">
+              <DesktopNavbar />
+            </div>
+            <main className="bg-(--color-secondary) md:mx-15 md:mb-10 md:px-20 h-screen">
+              <div>{children}</div>
+            </main>
+          </div>
+        )}
       </body>
     </html>
   );
