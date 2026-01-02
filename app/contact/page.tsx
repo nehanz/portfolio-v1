@@ -200,8 +200,8 @@ export default function Contact() {
         <div className="flex flex-col justify-center items-center h-full">
           <motion.section className="flex flex-col justify-center items-center h-full" variants={containerVariants} initial="hidden" animate="show">
             <div className="grid lg:grid-cols-2 gap-6">
-              <motion.div className="flex flex-col gap-4" variants={fadeInVariant}>
-                <h1 className="text-5xl font-bold text-[var(--color-primary)] mb-10 mt-5">
+              <motion.div className="flex flex-col gap-4 min-h-screen md:min-h-max" variants={fadeInVariant}>
+                <h1 className="text-5xl font-bold text-[var(--color-primary)] mb-5 mt-5">
                   Get in touch
                 </h1>
                 <p className="text-lg pr-5">
@@ -212,7 +212,7 @@ export default function Contact() {
                   meeting like-minded people and exploring projects that create
                   value and make an impact.
                 </p>
-                <div className="mt-10 flex flex-col gap-5">
+                <div className="mt-50 flex flex-col gap-5">
                   {socialLinks.map(({ icon, href, label }) => (
                     <div key={label} className="w-0">
                       <a
@@ -233,7 +233,7 @@ export default function Contact() {
                 </div>
               </motion.div>
 
-              <motion.div className="flex flex-col gap-4 bg-[var(--color-accent1)] px-6 pt-5 mt-10 h-full" variants={fadeInVariant}>
+              <motion.div className="flex flex-col gap-4 bg-[var(--color-accent1)] px-4 pt-5 mt-10 pb-6 mb-20 md:mb-0" variants={fadeInVariant}>
                 <h2 className="text-3xl font-semibold mb-4">Send a Message</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-10" noValidate>

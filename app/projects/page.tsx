@@ -1,26 +1,29 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-// Animation variants for staggered fade-in
+
 const containerVariants = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.25,
+      staggerChildren: 0.2,
     },
   },
 };
 
 const fadeInVariant = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 };
+
+const scaleVariant = {
+  hidden: { opacity: 0, scale: 0.98 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+};
+
 import {
   FaGithub,
   FaExternalLinkAlt,
-  FaCalendarAlt,
-  FaUserTie,
-  FaTag,
 } from "react-icons/fa";
 import Image from "next/image";
 
@@ -169,14 +172,15 @@ const PROJECT_DATA: ProjectData[] = [
     label: "Team Project",
     imageSrc: project2,
   },
-
 ];
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div
+    <motion.div
+      ref={cardRef}
       className="border border-transparent hover:border-white/30 transition-all duration-300 cursor-pointer bg-[var(--color-accent1)] p-6 h-full flex flex-col"
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
@@ -190,6 +194,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
           onClick();
         }
       }}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={scaleVariant}
     >
       <div className="flex justify-between items-start mb-2">
         <h2 className="text-2xl font-bold mb-5">{project.title}</h2>
@@ -225,7 +233,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -263,10 +271,18 @@ const ProjectDetailsDialog: React.FC<{
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-10">
-      <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-10"
+    >
+      <motion.div
         ref={dialogRef}
-        className="bg-[var(--color-accent1)] p-6 md:p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.2 }}
+        className="bg-[var(--color-accent1)] p-6 md:p-8 w-screen max-w-2xl md:max-w-4xl md:mx-0 -mx-4 max-h-[80vh] overflow-y-auto relative"
       >
         <button
           onClick={onClose}
@@ -331,7 +347,7 @@ const ProjectDetailsDialog: React.FC<{
                 {project.techStack.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="text-white/90 text-sm px-4 py-2 border border-[var(--color-accent2)]"
+                    className="text-white/90 text-sm px-4 py-2 border border-[var(--color-accent2)] cursor-default"
                   >
                     {tech}
                   </span>
@@ -355,31 +371,31 @@ const ProjectDetailsDialog: React.FC<{
         </div>
 
         {(project.gitLink || project.siteLink) && (
-          <div className="flex gap-4 mt-6 pt-6 border-t border-white/10">
+            <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-white/10">
             {project.gitLink && (
               <a
-                href={project.gitLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[var(--color-accent2)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] text-white px-5 py-2.5 transition-colors duration-300"
+              href={project.gitLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-[var(--color-accent2)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] text-white px-5 py-2.5 transition-colors duration-300 w-full sm:w-auto"
               >
-                <FaGithub /> View Code
+              <FaGithub /> View Code
               </a>
             )}
             {project.siteLink && (
               <a
-                href={project.siteLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-[var(--color-accent2)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] text-white px-5 py-2.5 transition-colors duration-300"
+              href={project.siteLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-[var(--color-accent2)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] text-white px-5 py-2.5 transition-colors duration-300 w-full sm:w-auto"
               >
-                <FaExternalLinkAlt /> Live Demo
+              <FaExternalLinkAlt /> Live Demo
               </a>
             )}
-          </div>
+            </div>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
@@ -387,9 +403,8 @@ const ProjectSection: React.FC<{ category: string }> = ({ category }) => {
   const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
   const filteredProjects = PROJECT_DATA.filter((project) => project.category === category);
 
-  // Scroll trigger animation
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true });
+  const inView = useInView(ref, { once: true, amount: 0.1 });
 
   if (filteredProjects.length === 0) return null;
 
@@ -397,11 +412,14 @@ const ProjectSection: React.FC<{ category: string }> = ({ category }) => {
     <motion.section
       ref={ref}
       className="mb-10"
-      variants={containerVariants}
       initial="hidden"
       animate={inView ? "show" : "hidden"}
+      variants={containerVariants}
     >
-      <motion.p className="text-2xl font-bold text-[var(--color-foreground)] mb-6" variants={fadeInVariant}>
+      <motion.p 
+        className="text-2xl font-bold text-[var(--color-foreground)] mb-6" 
+        variants={fadeInVariant}
+      >
         {category}
       </motion.p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -425,17 +443,28 @@ const ProjectSection: React.FC<{ category: string }> = ({ category }) => {
 
 export default function Projects() {
   const categories = Array.from(new Set(PROJECT_DATA.map((p) => p.category)));
+  const mainRef = useRef<HTMLDivElement>(null);
+
   return (
     <motion.div
+      ref={mainRef}
       className="h-screen overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-      variants={containerVariants}
       initial="hidden"
       animate="show"
+      variants={containerVariants}
     >
       <div className="w-full p-10">
         <div className="relative">
-          <motion.section className="mb-10" variants={containerVariants} initial="hidden" animate="show">
-            <motion.h1 className="text-5xl font-bold text-[var(--color-primary)] mb-10 mt-5" variants={fadeInVariant}>
+          <motion.section 
+            className="mb-10" 
+            initial="hidden"
+            animate="show"
+            variants={containerVariants}
+          >
+            <motion.h1 
+              className="text-5xl font-bold text-[var(--color-primary)] mb-10 mt-5" 
+              variants={fadeInVariant}
+            >
               Projects
             </motion.h1>
             {categories.map((category) => (

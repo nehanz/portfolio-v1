@@ -248,7 +248,6 @@ export default function Home() {
           }}
         />
 
-        {/* Scrollable Content */}
         <motion.div
           ref={mobileColumnRef}
           className="w-full h-screen overflow-y-scroll scroll-smooth relative"
