@@ -196,10 +196,11 @@ export default function Contact() {
           -webkit-text-fill-color: var(--color-foreground) !important;
         }
       `}</style>
-      <div className="w-full p-10">
+      <div className="w-full p-8 md:p-10">
         <div className="flex flex-col justify-center items-center h-full">
           <motion.section className="flex flex-col justify-center items-center h-full" variants={containerVariants} initial="hidden" animate="show">
             <div className="grid lg:grid-cols-2 gap-6">
+              
               <motion.div className="flex flex-col gap-4 min-h-screen md:min-h-max" variants={fadeInVariant}>
                 <h1 className="text-5xl font-bold text-[var(--color-primary)] mb-5 mt-5">
                   Get in touch
@@ -212,7 +213,7 @@ export default function Contact() {
                   meeting like-minded people and exploring projects that create
                   value and make an impact.
                 </p>
-                <div className="mt-50 flex flex-col gap-5">
+                <div className="mt-10 flex flex-col gap-5">
                   {socialLinks.map(({ icon, href, label }) => (
                     <div key={label} className="w-0">
                       <a
@@ -233,10 +234,9 @@ export default function Contact() {
                 </div>
               </motion.div>
 
-              <motion.div className="flex flex-col gap-4 bg-[var(--color-accent1)] px-4 pt-5 mt-10 pb-6 mb-20 md:mb-0" variants={fadeInVariant}>
+              <motion.div className="flex flex-col gap-4 bg-[var(--color-accent1)] px-4 pt-5 mt-5 md:mt-10 pb-6 mb-20 md:mb-0" variants={fadeInVariant}>
                 <h2 className="text-3xl font-semibold mb-4">Send a Message</h2>
-
-                <form onSubmit={handleSubmit} className="space-y-10" noValidate>
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-8" noValidate>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label
@@ -344,7 +344,7 @@ export default function Contact() {
 
                   {submitStatus.message && (
                     <div
-                      className={`p-4 mb-4 text-sm ${
+                      className={`px-4 text-sm ${
                         submitStatus.type === "error"
                           ? "text-red-400"
                           : "text-white-400"
@@ -359,7 +359,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full mt-10 py-3 px-4 font-medium ${
+                    className={`w-full mt-5 md:mt-10 py-3 px-4 font-medium ${
                       isSubmitting
                         ? "bg-[var(--color-accent2)] cursor-not-allowed hover:cursor-not-allowed"
                         : "bg-[var(--color-primary)] hover:bg-[var(--color-accent2)] text-[var(--color-background)] hover:text-[var(--color-foreground)] transition-all duration-300 cursor-pointer"
