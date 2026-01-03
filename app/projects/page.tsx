@@ -181,7 +181,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
   return (
     <motion.div
       ref={cardRef}
-      className="border border-transparent hover:border-white/30 transition-all duration-300 cursor-pointer bg-[var(--color-accent1)] p-6 h-full flex flex-col"
+      className="border border-transparent hover:border-white/30 transition-all duration-300 cursor-pointer bg-[var(--color-accent1)] px-6 py-3 md:py-5 h-full flex flex-col"
       onClick={onClick}
       tabIndex={0}
       role="button"
@@ -197,7 +197,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
       viewport={{ once: true, amount: 0.1 }}
       variants={scaleVariant}
     >
-      <div className="flex justify-between items-start mb-2">
+      <div className="flex justify-between items-start">
         <h2 className="text-2xl font-bold mb-5">{project.title}</h2>
       </div>
 
@@ -415,7 +415,7 @@ const ProjectSection: React.FC<{ category: string }> = ({ category }) => {
       variants={containerVariants}
     >
       <motion.p 
-        className="text-2xl font-bold text-[var(--color-foreground)] mb-6" 
+        className="text-lg md:text-2xl font-bold text-[var(--color-foreground)] mb-6" 
         variants={fadeInVariant}
       >
         {category}
@@ -451,7 +451,7 @@ export default function Projects() {
       animate="show"
       variants={containerVariants}
     >
-      <div className="w-full p-10">
+      <div className="w-full p-8 md:p-10">
         <div className="relative">
           <motion.section 
             className="mb-10" 
@@ -460,7 +460,7 @@ export default function Projects() {
             variants={containerVariants}
           >
             <motion.h1 
-              className="text-5xl font-bold text-[var(--color-primary)] mb-10 mt-5" 
+              className="text-3xl md:text-5xl font-bold text-[var(--color-primary)] mb-10 mt-3 md:mt-5" 
               variants={fadeInVariant}
             >
               Projects

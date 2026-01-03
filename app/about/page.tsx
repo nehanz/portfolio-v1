@@ -368,7 +368,7 @@ const StatsBox: React.FC = () => {
 
   return (
     <motion.div
-      className="relative w-fit mx-auto my-25 group"
+      className="relative w-fit mx-auto my-6 md:my-20 mb-10 group"
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3 }}
     >
@@ -564,7 +564,7 @@ const IntroductionDesktop: React.FC = () => {
 const IntroductionMobile: React.FC = () => {
   return (
     <motion.p
-      className="text-lg tracking-wider mb-10"
+      className="text-md tracking-wider mb-10"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
@@ -584,7 +584,7 @@ const IntroductionMobile: React.FC = () => {
 const HobbiesSection: React.FC = () => {
   return (
     <motion.p
-      className="text-lg tracking-wider text-justify"
+      className="text-md md:text-lg tracking-wider"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
@@ -902,7 +902,7 @@ function About() {
         <div className="w-full px-8 py-8">
           <section className="min-h-screen">
             <motion.h1
-              className="text-3xl font-bold mb-6 text-[var(--color-primary)] mt-2"
+              className="text-3xl font-bold mb-10 text-[var(--color-primary)] mt-2"
               variants={fadeInVariant}
             >
               About Me
@@ -932,7 +932,7 @@ function About() {
               whileInView="show"
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInVariant}
-              className="mt-20"
+              className="mt-10"
             >
               <SectionExperience
                 title="Experience"
