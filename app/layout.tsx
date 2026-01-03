@@ -1,8 +1,9 @@
-'use client';
+"use client";
 import localFont from "next/font/local";
 import "./globals.css";
 
 import DesktopNavbar from "@/components/DesktopNavbar";
+import MobileNavbar from "@/components/MobileNavbar";
 import Loader from "@/components/Loader";
 import { useEffect, useState } from "react";
 
@@ -64,6 +65,10 @@ export default function RootLayout({
             {/* Desktop Navbar - Hidden on mobile */}
             <div className="hidden md:block absolute left-15 z-10 h-full bg-(--color-accent1)">
               <DesktopNavbar />
+            </div>
+            {/* Mobile Navbar - Hidden on desktop */}
+            <div className="md:hidden">
+              <MobileNavbar />
             </div>
             <main className="bg-(--color-secondary) md:mx-15 md:mb-10 md:px-20 h-screen">
               <div>{children}</div>

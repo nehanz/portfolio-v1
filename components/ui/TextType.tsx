@@ -1,6 +1,6 @@
 'use client';
 
-import { ElementType, useEffect, useRef, useState, createElement, useMemo, useCallback } from 'react';
+import React, { ElementType, useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { gsap } from 'gsap';
 
 interface TextTypeProps {
@@ -24,7 +24,10 @@ interface TextTypeProps {
   reverseMode?: boolean;
 }
 
-const TextType = ({
+const TextType = React.forwardRef<
+  HTMLElement,
+  TextTypeProps & React.HTMLAttributes<HTMLElement>
+>(({
   text,
   as: Component = 'div',
   typingSpeed = 50,
@@ -43,15 +46,15 @@ const TextType = ({
   onSentenceComplete,
   startOnVisible = false,
   reverseMode = false,
+   
   ...props
-}: TextTypeProps & React.HTMLAttributes<HTMLElement>) => {
+}, ref) => {
   const [displayedText, setDisplayedText] = useState('');
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(!startOnVisible);
   const cursorRef = useRef<HTMLSpanElement>(null);
-  const containerRef = useRef<HTMLElement>(null);
 
   const textArray = useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
 
@@ -67,7 +70,10 @@ const TextType = ({
   };
 
   useEffect(() => {
-    if (!startOnVisible || !containerRef.current) return;
+    if (!startOnVisible) return;
+
+    const container = typeof ref === 'object' && ref !== null ? ref.current : null;
+    if (!container) return;
 
     const observer = new IntersectionObserver(
       entries => {
@@ -80,9 +86,9 @@ const TextType = ({
       { threshold: 0.1 }
     );
 
-    observer.observe(containerRef.current);
+    observer.observe(container);
     return () => observer.disconnect();
-  }, [startOnVisible]);
+  }, [startOnVisible, ref]);
 
   useEffect(() => {
     if (showCursor && cursorRef.current) {
@@ -164,31 +170,65 @@ const TextType = ({
     isVisible,
     reverseMode,
     variableSpeed,
-    onSentenceComplete
+    onSentenceComplete,
+    getRandomSpeed
   ]);
 
   const shouldHideCursor =
     hideCursorWhileTyping && (currentCharIndex < textArray[currentTextIndex].length || isDeleting);
 
-  return createElement(
-    Component,
-    {
-      ref: containerRef,
-      className: `inline-block whitespace-pre-wrap tracking-tight ${className}`,
-      ...props
-    },
-    <span className="inline" style={{ color: getCurrentTextColor() || 'inherit' }}>
-      {displayedText}
-    </span>,
-    showCursor && (
-      <span
-        ref={cursorRef}
-        className={`ml-1 inline-block opacity-100 ${shouldHideCursor ? 'hidden' : ''} ${cursorClassName}`}
-      >
-        {cursorCharacter}
+  const content = (
+    <>
+      <span className="inline" style={{ color: getCurrentTextColor() || 'inherit' }}>
+        {displayedText}
       </span>
-    )
+      {showCursor && (
+        <span
+          ref={cursorRef}
+          className={`ml-1 inline-block opacity-100 ${shouldHideCursor ? 'hidden' : ''} ${cursorClassName}`}
+        >
+          {cursorCharacter}
+        </span>
+      )}
+    </>
   );
-};
+
+  const className_final = `inline-block whitespace-pre-wrap tracking-tight ${className}`;
+
+  // Use switch to handle different component types
+  switch (Component) {
+    case 'div':
+      return (
+        <div ref={ref as React.Ref<HTMLDivElement>} className={className_final} {...props}>
+          {content}
+        </div>
+      );
+    case 'span':
+      return (
+        <span ref={ref as React.Ref<HTMLSpanElement>} className={className_final} {...props}>
+          {content}
+        </span>
+      );
+    case 'p':
+      return (
+        <p ref={ref as React.Ref<HTMLParagraphElement>} className={className_final} {...props}>
+          {content}
+        </p>
+      );
+    default: {
+      // For custom components, don't pass ref (they might not support it)
+      const CustomComponent = Component as React.ElementType<
+        React.HTMLAttributes<HTMLElement>
+      >;
+      return (
+        <CustomComponent className={className_final} {...props}>
+          {content}
+        </CustomComponent>
+      );
+    }
+  }
+});
+
+TextType.displayName = 'TextType';
 
 export default TextType;

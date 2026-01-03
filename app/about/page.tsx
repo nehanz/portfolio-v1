@@ -1,8 +1,6 @@
 "use client";
 import * as React from "react";
 import { motion } from "framer-motion";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
 
 import {
   HoverCard,
@@ -136,9 +134,9 @@ const EDUCATION_DETAILS: EducationItem[] = [
     link: "https://uom.lk/",
     duration: "2024 - Present",
     details: (
-      <div className="text-justify">
-        I have a CGPA of 4.00/4.00. I'm involved in Badminton and IEEE, and I
-        received Dean's List recognition for my performance in both L1S1 and
+      <div>
+        I have a CGPA of 4.00/4.00. I&#39;m involved in Badminton and IEEE, and I
+        received Dean&#39;s List recognition for my performance in both L1S1 and
         L2S1.
       </div>
     ),
@@ -149,8 +147,8 @@ const EDUCATION_DETAILS: EducationItem[] = [
     link: "https://nalandacollege.lk/",
     duration: "2020 - 2023",
     details: (
-      <div className="text-justify">
-        I achieved a Z score of 2.519 and earned A's in CMaths, Physics, and
+      <div>
+        I achieved a Z score of 2.519 and earned A&#39;s in CMaths, Physics, and
         ICT. I was also a member of the School Math Society.
       </div>
     ),
@@ -161,10 +159,10 @@ const EDUCATION_DETAILS: EducationItem[] = [
     link: "https://www.dharmapalavidyalaya.org/",
     duration: "2013 - 2019",
     details: (
-      <div className="text-justify">
+      <div>
         I was a school prefect, where I learned leadership skills and helped
         with various tasks. I also played badminton, which taught me teamwork
-        and discipline. I earned 9 A's in my exams.
+        and discipline. I earned 9 A&#39;s in my exams.
       </div>
     ),
   },
@@ -177,7 +175,7 @@ const EXPERIENCE_DETAILS: ExperienceItem[] = [
     link: "https://rotaractmora.org/",
     duration: "2025 - Present",
     details: (
-      <div className="text-justify">
+      <div>
         As a member of the Rotaract Club, I contributed to various projects,
         including software development, server migrations, and other
         tech-related tasks, helping improve club operations and support
@@ -191,7 +189,7 @@ const EXPERIENCE_DETAILS: ExperienceItem[] = [
     link: "https://school.triazinesoft.in/Details/donum-dei-international-school/",
     duration: "2024 - Present",
     details: (
-      <div className="text-justify">
+      <div>
         Tutoring school students in computer science subjects, helping them
         understand programming concepts, algorithms, and data structures, and
         assisting them in improving their coding skills and academic
@@ -222,7 +220,13 @@ const CERTIFICATION_DETAILS = [
   },
 ];
 
-const SkillsList = [
+import type { StaticImageData } from "next/image";
+
+const SkillsList: Array<{
+  skill: string;
+  category: string;
+  icon: StaticImageData;
+}> = [
   {
     skill: "JavaScript",
     category: "Programming Language",
@@ -531,8 +535,8 @@ const IntroductionDesktop: React.FC = () => {
         viewport={{ once: true }}
         variants={fadeInVariant}
       >
-        Hi, I'm Nehan Wijayagunarathna — a second-year Information Technology
-        student at the University of Moratuwa. I'm passionate about
+        Hi, I&#39;m Nehan Wijayagunarathna — a second-year Information Technology
+        student at the University of Moratuwa. I&#39;m passionate about
         understanding how systems work behind the scenes and building reliable,
         scalable applications. My experience spans full-stack development and
         DevOps, with a focus on creating production-ready solutions. I enjoy
@@ -550,7 +554,7 @@ const IntroductionDesktop: React.FC = () => {
         As a member of the Rotaract IT team, I contribute to software projects
         and collaborate on various initiatives. I also tutor computer science,
         helping students master programming concepts. These roles have honed my
-        teamwork, communication, and problem-solving abilities. I'm always eager
+        teamwork, communication, and problem-solving abilities. I&#39;m always eager
         for new opportunities to learn and contribute to meaningful projects.
       </motion.p>
     </>
@@ -566,8 +570,8 @@ const IntroductionMobile: React.FC = () => {
       viewport={{ once: true }}
       variants={fadeInVariant}
     >
-      Hi, I'm Nehan Wijayagunarathna — a second-year Information Technology
-      student at the University of Moratuwa. I'm passionate about understanding
+      Hi, I&#39;m Nehan Wijayagunarathna — a second-year Information Technology
+      student at the University of Moratuwa. I&#39;m passionate about understanding
       how systems work behind the scenes and building reliable, scalable
       applications. My experience spans full-stack development and DevOps, with
       a focus on creating production-ready solutions. I enjoy optimizing
@@ -701,7 +705,7 @@ const SkillSection: React.FC = () => {
     }
     acc[category].push({ skill, icon });
     return acc;
-  }, {} as Record<string, Array<{ skill: string; icon: any }>>);
+  }, {} as Record<string, Array<{ skill: string; icon: StaticImageData }>>);
 
   return (
     <div className="mt-20">
@@ -710,7 +714,7 @@ const SkillSection: React.FC = () => {
       </h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {Object.entries(groupedSkills).map(([category, skills], idx) => {
+        {Object.entries(groupedSkills).map(([category, skills]) => {
           return (
             <motion.div
               key={category}

@@ -5,7 +5,7 @@ import "./globals.css";
 
 import RoleType from "@/components/RoleType";
 
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Animation variants for staggered fade-in
 const containerVariants = {
@@ -26,7 +26,11 @@ export default function Home() {
   const leftColumnRef = useRef<HTMLDivElement>(null);
   const mobileColumnRef = useRef<HTMLDivElement>(null);
   const [grayscaleValue, setGrayscaleValue] = useState(0);
-  const [imageOpacity, setImageOpacity] = useState(1);
+  const [imageOpacity, setImageOpacity] = useState(() => {
+    // Check if page has been visited and set initial opacity
+    const hasVisited = typeof window !== 'undefined' ? sessionStorage.getItem("visitedHome") : null;
+    return hasVisited ? 1 : 1; // Default to 1 for initial render
+  });
   const [mouseOffset, setMouseOffset] = useState({ x: 5, y: 5 });
 
   useEffect(() => {
@@ -46,13 +50,6 @@ export default function Home() {
         });
       }
       sessionStorage.setItem("visitedHome", "true");
-    }
-
-    if (hasVisited && mobileColumnRef.current) {
-      const scrollTop = mobileColumnRef.current.scrollTop;
-      if (scrollTop < 5) {
-        setImageOpacity(0.2);
-      }
     }
 
     // Desktop grayscale
@@ -98,7 +95,6 @@ export default function Home() {
 
     const handleMouseMove = (e: MouseEvent) => {
       const containerWidth = 500;
-      const containerHeight = 500;
       const centerX = window.innerWidth - containerWidth / 2 - 5;
       const centerY = window.innerHeight / 2;
       const offsetX = e.clientX - centerX;
@@ -118,6 +114,8 @@ export default function Home() {
     }
     if (mobileColumn) {
       mobileColumn.addEventListener("scroll", handleMobileScroll);
+      // Set initial opacity on mount
+      handleMobileScroll();
     }
     return () => {
       if (leftColumn)
@@ -222,11 +220,7 @@ export default function Home() {
               className="text-4xl font-bold text-(--color-foreground) italic border-l-3 pl-6"
               style={{ borderLeftColor: "var(--color-accent1)" }}
             >
-              “Never forget what you are. The world will not. Wear it like
-              armor”
-              <p className="text-xl text-(--color-primary)">
-                — Tyrion Lannister
-              </p>
+              “ The knot exists only long enough to understand why it should not exist ”
             </blockquote>
           </div>
         </motion.div>
@@ -314,11 +308,7 @@ export default function Home() {
           <div className="min-h-screen flex justify-center px-6 p-32 relative z-20 pointer-events-auto">
             <div className="flex flex-col gap-10 w-full">
               <blockquote className="text-4xl font-semibold text-(--color-foreground) italic text-center">
-                “Never forget what you are. The world will not. Wear it like
-                armor”
-                <p className="text-2xl text-(--color-primary)">
-                  — Tyrion Lannister
-                </p>
+                “The knot exists only long enough to understand why it should not exist”
               </blockquote>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
+import type { StaticImageData } from "next/image";
 
 const containerVariants = {
   hidden: {},
@@ -37,7 +38,7 @@ import project6 from "@/public/images/project6.png";
 interface ProjectData {
   title: string;
   description: string;
-  imageSrc?: any;
+  imageSrc?: string | StaticImageData;
   gitLink?: string;
   siteLink?: string;
   techStack: string[];
@@ -131,7 +132,7 @@ const PROJECT_DATA: ProjectData[] = [
     description:
       "The Zenn Table is an automated sand plotter coffee table that combines the art of sand design with smart digital interaction. Powered by an ESP32 and a Core XY motion system, it precisely creates intricate patterns using a magnetic steel ball, while users control designs, LED effects, and colors via a touch display. Its web application enables shop assistants to send personalized messages—perfect for special occasions—while automated drawers and dynamic LED synchronization enhance both functionality and aesthetics",
     techStack: [
-      "Embedded Systems",
+      "Embedded System",
       "IOT",
       "C++",
       "ESP32",
@@ -175,7 +176,6 @@ const PROJECT_DATA: ProjectData[] = [
 ];
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
-  const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -183,8 +183,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick }) => {
       ref={cardRef}
       className="border border-transparent hover:border-white/30 transition-all duration-300 cursor-pointer bg-[var(--color-accent1)] p-6 h-full flex flex-col"
       onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       tabIndex={0}
       role="button"
       aria-label={`Open details for ${project.title}`}
