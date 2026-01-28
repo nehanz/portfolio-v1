@@ -529,7 +529,7 @@ export default function MobileNavbar() {
             whiteSpace: 'nowrap',
           }}
         >
-          Don't touch <span style={{ fontSize: '64px' }}>→</span>
+          Don&apos;t touch <span style={{ fontSize: '64px' }}>→</span>
         </div>
       )}
 
