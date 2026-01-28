@@ -156,6 +156,65 @@ export default function MobileNavbar() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [showSocial, setShowSocial] = useState(false);
+  const [showText, setShowText] = useState(false);
+
+  React.useEffect(() => {
+    const hasSeenAnimation = typeof window !== 'undefined' && localStorage.getItem('fabAnimationSeen');
+    if (!hasSeenAnimation) {
+      setShowText(true);
+      localStorage.setItem('fabAnimationSeen', 'true');
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes strokeBorderAnimation {
+        0% {
+          stroke-dashoffset: 351.858;
+          opacity: 1;
+        }
+        70% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+        100% {
+          stroke-dashoffset: 0;
+          opacity: 1;
+        }
+      }
+
+      @keyframes pulseText {
+        0%, 100% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .fab-stroke-circle {
+        stroke-dasharray: 351.858;
+        stroke-dashoffset: 351.858;
+        animation: strokeBorderAnimation 5s ease-in-out 1 forwards;
+      }
+
+      .fab-click-text {
+        animation: pulseText 5s ease-in-out 1 forwards;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => style.remove();
+  }, []);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowText(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+  
   const [pos, setPos] = useState(() => {
     const btnWidth = 56;
     return {
@@ -429,8 +488,50 @@ export default function MobileNavbar() {
         }}
         aria-label="Open assistive menu"
       >
-        <Image src={MenuIcon} alt="Menu" width={32} height={32} />
       </div>
+
+      <svg
+        className="fixed z-50 pointer-events-none"
+        style={{ left: pos.x - 6, top: pos.y - 6, width: 68, height: 68 }}
+        viewBox="0 0 68 68"
+      >
+        <circle
+          cx="34"
+          cy="34"
+          r="15"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          className="fab-stroke-circle"
+          style={{ color: 'var(--color-primary)' }}
+        />
+      </svg>
+
+      {showText && (
+        <div
+          className="fixed inset-0 z-40"
+          style={{
+            background: 'rgba(0, 0, 0, 0.6)',
+            animation: 'pulseText 5s ease-in-out 1 forwards',
+          }}
+        />
+      )}
+
+      {showText && (
+        <div
+          className="fixed z-9999 pointer-events-none fab-click-text"
+          style={{
+            left: pos.x - 200,
+            top: pos.y - 25,
+            color: '#ffffff',
+            fontSize: '24px',
+            fontWeight: '500',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          Don't touch <span style={{ fontSize: '64px' }}>→</span>
+        </div>
+      )}
 
       {menuItems.map((item, i) => {
         const btnRadius = 25;
