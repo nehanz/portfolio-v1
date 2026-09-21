@@ -316,23 +316,33 @@ const SkillsList: Array<{
 
 const HighlightItems = [
   {
-    title: "9 th Place in Sherlock 2024",
-    organizedBy:
-      "IEEE Women in Engineering Student Branch Affinity Group of IIT",
-    description:
-      "SHErlock 2.0 is a national problem-solving competition that challenged undergraduates across Sri Lanka with complex puzzles and strategic scenarios. Organized by IEEE WIE IIT, the event emphasized critical thinking, teamwork, and celebrated women's impact in STEM.",
-  },
-  {
-    title: "Finalist in Medusa2.0 2025",
+    title: "2nd Runner-up in Medusa 2.0",
     organizedBy: "ECSC University of Kelaniya",
     description:
-      "MEDUSA 2.0 is the ultimate cybersecurity battleground where the brightest minds from universities across the nation compete in advanced Capture The Flag challenges. This year, we have included various new types of CTF challenges, expanding the competition with innovative categories and advanced problem-solving experiences for all participants.",
+      "Demonstrated advanced cybersecurity skills by identifying and exploiting complex web application vulnerabilities under strict time constraints in this national Capture The Flag (CTF) competition.",
   },
   {
-    title: "111 th Place in Mora Xtreme 2025",
-    organizedBy: "IEEE Student Branch University of Moratuwa",
+    title: "4th Place in Vectra 2026",
+    organizedBy: "IEEE WIE of IIT",
     description:
-      "Mora Xtreme is an annual 24-hour hackathon organized by the IEEE Student Branch of the University of Moratuwa. It brings together innovative minds to develop cutting-edge solutions under time constraints, fostering creativity, teamwork, and technical skills in a high-pressure environment.",
+      "Competed in an intensive attack-and-defence CTF competition focused on web security, reverse engineering, binary exploitation, and cryptographic vulnerability assessment.",
+  },
+  {
+    title: "Top 10 in SHerlock 2.0",
+    organizedBy: "IEEE WIE of IIT",
+    description:
+      "Achieved Top 10 nationally in a STEM-based forensic investigation competition involving evidence analysis, complex clue discovery, and strategic logical problem-solving.",
+  },  {
+    title: "Finalist in Beauty of Cloud 2.0",
+    organizedBy: "IEEE CS Student Branch Chapter of USJ",
+    description:
+      "Reached the grand finals of Beauty of Cloud 2.0, Sri Lanka's premier inter-university cloud computing competition, demonstrating expertise in designing, deploying, and optimizing resilient cloud infrastructure.",
+  },
+  {
+    title: "Finalist in iCS CTF",
+    organizedBy: "ISACA UCSC Student Group",
+    description:
+      "Qualified as a finalist in iCS, a prestigious inter-university Capture The Flag (CTF) competition, solving complex challenges across web exploitation, digital forensics, and network security.",
   },
 ];
 
@@ -798,7 +808,7 @@ const HighlightSection: React.FC = () => {
         <h2 className="text-4xl font-bold text-[var(--color-primary)] mb-20">
           Highlights
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {HighlightItems.map((item, idx) => {
             return (
               <motion.div
