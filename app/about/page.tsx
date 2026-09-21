@@ -30,11 +30,13 @@ import cppIcon from "@/public/icons/cppicon.svg";
 import phpIcon from "@/public/icons/phpicon.svg";
 import sqlIcon from "@/public/icons/sqlicon.svg";
 import bashIcon from "@/public/icons/bashicon.svg";
+import goIcon from "@/public/icons/goicon.svg";
 import tailwindIcon from "@/public/icons/tailwindicon.svg";
 import htmlIcon from "@/public/icons/htmlicon.svg";
 import cssIcon from "@/public/icons/cssicon.svg";
 import shadcnIcon from "@/public/icons/shadcnicon.svg";
 import fastapiIcon from "@/public/icons/fastapiicon.svg";
+import springbootIcon from "@/public/icons/springbooticon.svg";
 import prismaIcon from "@/public/icons/prismaicon.svg";
 import firebaseIcon from "@/public/icons/firebaseicon.svg";
 import supabaseIcon from "@/public/icons/supabaseicon.svg";
@@ -44,6 +46,8 @@ import azureIcon from "@/public/icons/azureicon.svg";
 import tektonIcon from "@/public/icons/tektonicon.svg";
 import openshiftIcon from "@/public/icons/openshifticon.svg";
 import githubActionsIcon from "@/public/icons/githubactionsicon.svg";
+import jenkinsIcon from "@/public/icons/jenkinsicon.svg";
+import ansibleIcon from "@/public/icons/ansibleicon.svg";
 import ubuntuIcon from "@/public/icons/ubuntuicon.svg";
 import parrotOSIcon from "@/public/icons/parrotosicon.svg";
 import gitIcon from "@/public/icons/giticon.svg";
@@ -170,16 +174,29 @@ const EDUCATION_DETAILS: EducationItem[] = [
 
 const EXPERIENCE_DETAILS: ExperienceItem[] = [
   {
-    role: "Team Member - IT Avenue",
-    organization: "Rotaract Club of University of Moratuwa",
-    link: "https://rotaractmora.org/",
-    duration: "2025 - Present",
+    role: "Software Engineer Intern",
+    organization: "IF Solutions (Pvt) Ltd",
+    link: "https://ifsolutions.lk/",
+    duration: "Mar 2026 – Aug 2026",
     details: (
       <div>
-        As a member of the Rotaract Club, I contributed to various projects,
-        including software development, server migrations, and other
-        tech-related tasks, helping improve club operations and support
-        community initiatives.
+        Delivered a Project Management System using FastAPI, React, and Supabase
+        with project, payment, and resource management features. Implemented AI
+        integrations for an ERP system and developed an appointment booking
+        system with scheduling and booking management functionality.
+      </div>
+    ),
+  },
+  {
+    role: "Software Developer - IT Team",
+    organization: "Rotaract Club of University of Moratuwa",
+    link: "https://rotaractmora.org/",
+    duration: "2025 - 2026",
+    details: (
+      <div>
+        As a member of the Rotaract IT team, I developed and maintained internal platforms,
+        handled coding, testing, debugging, security testing, and deployment
+        using GitHub Actions, while supporting DevOps operations and containerized infrastructure.
       </div>
     ),
   },
@@ -187,7 +204,7 @@ const EXPERIENCE_DETAILS: ExperienceItem[] = [
     role: "Computer Science Tutor",
     organization: "Donum Dei International",
     link: "https://school.triazinesoft.in/Details/donum-dei-international-school/",
-    duration: "2024 - Present",
+    duration: "2024 - 2026",
     details: (
       <div>
         Tutoring school students in computer science subjects, helping them
@@ -227,70 +244,75 @@ const SkillsList: Array<{
   category: string;
   icon: StaticImageData;
 }> = [
-  {
-    skill: "JavaScript",
-    category: "Programming Language",
-    icon: javascriptIcon,
-  },
-  {
-    skill: "TypeScript",
-    category: "Programming Language",
-    icon: typescriptIcon,
-  },
-  { skill: "Python", category: "Programming Language", icon: pythonIcon },
-  { skill: "Java", category: "Programming Language", icon: javaIcon },
-  { skill: "C", category: "Programming Language", icon: cIcon },
-  { skill: "C++", category: "Programming Language", icon: cppIcon },
-  { skill: "PHP", category: "Programming Language", icon: phpIcon },
-  { skill: "SQL", category: "Programming Language", icon: sqlIcon },
-  { skill: "Bash", category: "Programming Language", icon: bashIcon },
+    {
+      skill: "JavaScript",
+      category: "Programming Language",
+      icon: javascriptIcon,
+    },
+    {
+      skill: "TypeScript",
+      category: "Programming Language",
+      icon: typescriptIcon,
+    },
+    { skill: "Python", category: "Programming Language", icon: pythonIcon },
+    { skill: "Java", category: "Programming Language", icon: javaIcon },
+    { skill: "Go", category: "Programming Language", icon: goIcon },
+    { skill: "C", category: "Programming Language", icon: cIcon },
+    { skill: "C++", category: "Programming Language", icon: cppIcon },
+    { skill: "PHP", category: "Programming Language", icon: phpIcon },
+    { skill: "SQL", category: "Programming Language", icon: sqlIcon },
+    { skill: "Bash", category: "Programming Language", icon: bashIcon },
 
-  { skill: "React", category: "Frontend development", icon: reactIcon },
-  { skill: "Next.js", category: "Frontend development", icon: nextjsIcon },
-  {
-    skill: "Tailwind CSS",
-    category: "Frontend development",
-    icon: tailwindIcon,
-  },
-  { skill: "HTML", category: "Frontend development", icon: htmlIcon },
-  { skill: "CSS", category: "Frontend development", icon: cssIcon },
-  { skill: "shadcn", category: "Frontend development", icon: shadcnIcon },
+    { skill: "React", category: "Frontend development", icon: reactIcon },
+    { skill: "Next.js", category: "Frontend development", icon: nextjsIcon },
+    {
+      skill: "Tailwind CSS",
+      category: "Frontend development",
+      icon: tailwindIcon,
+    },
+    { skill: "HTML", category: "Frontend development", icon: htmlIcon },
+    { skill: "CSS", category: "Frontend development", icon: cssIcon },
+    { skill: "shadcn", category: "Frontend development", icon: shadcnIcon },
 
-  { skill: "Node.js", category: "Backend development", icon: nodejsIcon },
-  { skill: "Express.js", category: "Backend development", icon: expressIcon },
-  { skill: "FastAPI", category: "Backend development", icon: fastapiIcon },
-  { skill: "Prisma", category: "Backend development", icon: prismaIcon },
-  { skill: "Firebase", category: "Backend development", icon: firebaseIcon },
-  { skill: "Supabase", category: "Backend development", icon: supabaseIcon },
+    { skill: "Node.js", category: "Backend development", icon: nodejsIcon },
+    { skill: "Express.js", category: "Backend development", icon: expressIcon },
+    { skill: "FastAPI", category: "Backend development", icon: fastapiIcon },
+    { skill: "Spring Boot", category: "Backend development", icon: springbootIcon },
+    { skill: "Prisma", category: "Backend development", icon: prismaIcon },
+    { skill: "Firebase", category: "Backend development", icon: firebaseIcon },
+    { skill: "Supabase", category: "Backend development", icon: supabaseIcon },
 
-  { skill: "MongoDB", category: "Database", icon: mongodbIcon },
-  { skill: "MySQL", category: "Database", icon: mysqlIcon },
-  { skill: "PostgreSQL", category: "Database", icon: postgresqlIcon },
-  { skill: "MSSQL", category: "Database", icon: mssqlIcon },
+    { skill: "MongoDB", category: "Database", icon: mongodbIcon },
+    { skill: "MySQL", category: "Database", icon: mysqlIcon },
+    { skill: "PostgreSQL", category: "Database", icon: postgresqlIcon },
+    { skill: "MSSQL", category: "Database", icon: mssqlIcon },
 
-  { skill: "Docker", category: "DevOps", icon: dockerIcon },
-  { skill: "Kubernetes", category: "DevOps", icon: kubernetesIcon },
-  { skill: "AWS", category: "DevOps", icon: awsIcon },
-  { skill: "Azure", category: "DevOps", icon: azureIcon },
-  { skill: "Tekton", category: "DevOps", icon: tektonIcon },
-  { skill: "OpenShift", category: "DevOps", icon: openshiftIcon },
-  { skill: "GitHub Actions", category: "DevOps", icon: githubActionsIcon },
-  { skill: "Ubuntu", category: "DevOps", icon: ubuntuIcon },
-  { skill: "Parrot OS", category: "DevOps", icon: parrotOSIcon },
-  { skill: "Git", category: "DevOps", icon: gitIcon },
-  { skill: "GitHub", category: "DevOps", icon: githubIcon },
+    { skill: "Docker", category: "DevOps", icon: dockerIcon },
+    { skill: "Kubernetes", category: "DevOps", icon: kubernetesIcon },
+    { skill: "AWS", category: "DevOps", icon: awsIcon },
+    { skill: "Azure", category: "DevOps", icon: azureIcon },
+    { skill: "Terraform", category: "DevOps", icon: parrotOSIcon },
+    { skill: "Ansible", category: "DevOps", icon: ansibleIcon },
+    { skill: "Tekton", category: "DevOps", icon: tektonIcon },
+    { skill: "OpenShift", category: "DevOps", icon: openshiftIcon },
+    { skill: "GitHub Actions", category: "DevOps", icon: githubActionsIcon },
+    { skill: "Jenkins", category: "DevOps", icon: jenkinsIcon },
+    { skill: "Ubuntu", category: "DevOps", icon: ubuntuIcon },
+    { skill: "Parrot OS", category: "DevOps", icon: parrotOSIcon },
+    { skill: "Git", category: "DevOps", icon: gitIcon },
+    { skill: "GitHub", category: "DevOps", icon: githubIcon },
 
-  { skill: "Arduino", category: "Other Tools", icon: arduinoIcon },
-  { skill: "ESP32", category: "Other Tools", icon: esp32Icon },
-  { skill: "IoT", category: "Other Tools", icon: iotIcon },
-  { skill: "Figma", category: "Other Tools", icon: figmaIcon },
-  { skill: "Canva", category: "Other Tools", icon: canvaIcon },
-  { skill: "Illustrator", category: "Other Tools", icon: illustratorIcon },
-  { skill: "Photoshop", category: "Other Tools", icon: photoshopIcon },
-  { skill: "Premiere Pro", category: "Other Tools", icon: premiereprIcon },
-  { skill: "After Effects", category: "Other Tools", icon: aftereffectsIcon },
-  { skill: "Postman", category: "Other Tools", icon: postmanIcon },
-];
+    { skill: "Arduino", category: "Other Tools", icon: arduinoIcon },
+    { skill: "ESP32", category: "Other Tools", icon: esp32Icon },
+    { skill: "IoT", category: "Other Tools", icon: iotIcon },
+    { skill: "Figma", category: "Other Tools", icon: figmaIcon },
+    { skill: "Canva", category: "Other Tools", icon: canvaIcon },
+    { skill: "Illustrator", category: "Other Tools", icon: illustratorIcon },
+    { skill: "Photoshop", category: "Other Tools", icon: photoshopIcon },
+    { skill: "Premiere Pro", category: "Other Tools", icon: premiereprIcon },
+    { skill: "After Effects", category: "Other Tools", icon: aftereffectsIcon },
+    { skill: "Postman", category: "Other Tools", icon: postmanIcon },
+  ];
 
 const HighlightItems = [
   {
@@ -382,7 +404,7 @@ const StatsBox: React.FC = () => {
         }
       >
         <StatItem
-          value="3+"
+          value="4+"
           label="Years of coding experience"
           description={
             isMobile
@@ -401,12 +423,12 @@ const StatsBox: React.FC = () => {
         />
 
         <StatItem
-          value="5+"
+          value="7+"
           label="Projects completed"
           description={
             isMobile
               ? undefined
-              : "Building reliable and scalable solutions through hands-on development"
+              : "Successfully delivered and deployed reliable, scalable solutions"
           }
           isMobile={isMobile}
         />
@@ -551,11 +573,14 @@ const IntroductionDesktop: React.FC = () => {
         viewport={{ once: true }}
         variants={fadeInVariant}
       >
-        As a member of the Rotaract IT team, I contribute to software projects
-        and collaborate on various initiatives. I also tutor computer science,
-        helping students master programming concepts. These roles have honed my
-        teamwork, communication, and problem-solving abilities. I&#39;m always eager
-        for new opportunities to learn and contribute to meaningful projects.
+        With practical experience gained as a Software Engineer Intern, I have
+        built and deployed scalable full-stack applications, integrated AI
+        capabilities, and automated cloud workflows. As an active member of the
+        Rotaract IT team, I contribute to core software projects and DevOps
+        infrastructure, while also tutoring computer science students in
+        programming and problem-solving concepts. I&#39;m always eager for new
+        opportunities to learn, collaborate, and contribute to meaningful, high-impact
+        projects.
       </motion.p>
     </>
   );
@@ -563,21 +588,32 @@ const IntroductionDesktop: React.FC = () => {
 
 const IntroductionMobile: React.FC = () => {
   return (
-    <motion.p
-      className="text-md tracking-wider mb-10"
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true }}
-      variants={fadeInVariant}
-    >
-      Hi, I&#39;m Nehan Wijayagunarathna — a second-year Information Technology
-      student at the University of Moratuwa. I&#39;m passionate about understanding
-      how systems work behind the scenes and building reliable, scalable
-      applications. My experience spans full-stack development and DevOps, with
-      a focus on creating production-ready solutions. I enjoy optimizing
-      systems, debugging complex issues, and improving workflows to build
-      efficient, practical software.
-    </motion.p>
+    <>
+      <motion.p
+        className="text-md tracking-wider mb-6"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={fadeInVariant}
+      >
+        Hi, I&#39;m Nehan Wijayagunarathna — a second-year Information Technology
+        student at the University of Moratuwa. I&#39;m passionate about understanding
+        how systems work behind the scenes and building reliable, scalable
+        applications. My experience spans full-stack development and DevOps, with
+        a focus on creating production-ready solutions.
+      </motion.p>
+      <motion.p
+        className="text-md tracking-wider mb-10"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={fadeInVariant}
+      >
+        With experience as a Software Engineer Intern and active contributions to the
+        Rotaract IT team and CS tutoring, I combine practical engineering skills with
+        collaborative problem solving.
+      </motion.p>
+    </>
   );
 };
 
