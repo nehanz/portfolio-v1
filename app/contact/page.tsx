@@ -153,7 +153,7 @@ export default function Contact() {
   const socialLinks = [
     {
       icon: <MdEmail className="text-xl text-(--color-accent)" />,
-      href: "mailto:nehannimsara003@gmail.com",
+      href: "mailto:nehan.wgy@gmail.com",
       label: "Email",
     },
     {

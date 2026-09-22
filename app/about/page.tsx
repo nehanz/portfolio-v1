@@ -139,9 +139,8 @@ const EDUCATION_DETAILS: EducationItem[] = [
     duration: "2024 - Present",
     details: (
       <div>
-        I have a CGPA of 4.00/4.00. I&#39;m involved in Badminton and IEEE, and I
-        received Dean&#39;s List recognition for my performance in both L1S1 and
-        L2S1.
+        I have a CGPA of 3.99 /4.00. I&#39;m involved in Badminton and IEEE, and I
+        received Dean&#39;s List recognition for my performance in all semesters so far.
       </div>
     ),
   },
@@ -567,7 +566,7 @@ const IntroductionDesktop: React.FC = () => {
         viewport={{ once: true }}
         variants={fadeInVariant}
       >
-        Hi, I&#39;m Nehan Wijayagunarathna — a second-year Information Technology
+        Hi, I&#39;m Nehan Wijayagunarathna — a third year Information Technology
         student at the University of Moratuwa. I&#39;m passionate about
         understanding how systems work behind the scenes and building reliable,
         scalable applications. My experience spans full-stack development and
