@@ -176,13 +176,12 @@ const EXPERIENCE_DETAILS: ExperienceItem[] = [
     role: "Software Engineer Intern",
     organization: "IF Solutions (Pvt) Ltd",
     link: "https://ifsolutions.lk/",
-    duration: "Mar 2026 – Aug 2026",
+    duration: "Mar 2026 – Sep 2026",
     details: (
       <div>
-        Delivered a Project Management System using FastAPI, React, and Supabase
-        with project, payment, and resource management features. Implemented AI
-        integrations for an ERP system and developed an appointment booking
-        system with scheduling and booking management functionality.
+        Implemented features and AI integrations for an ERP system and developed an appointment booking
+        system with scheduling and booking management functionality. Delivered a Project Management System using FastAPI, React, and Supabase
+        with project, payment, and resource management features.
       </div>
     ),
   },
@@ -190,7 +189,7 @@ const EXPERIENCE_DETAILS: ExperienceItem[] = [
     role: "Software Developer - IT Team",
     organization: "Rotaract Club of University of Moratuwa",
     link: "https://rotaractmora.org/",
-    duration: "2025 - 2026",
+    duration: "2025 Aug - 2026 Aug",
     details: (
       <div>
         As a member of the Rotaract IT team, I developed and maintained internal platforms,
@@ -203,7 +202,7 @@ const EXPERIENCE_DETAILS: ExperienceItem[] = [
     role: "Computer Science Tutor",
     organization: "Donum Dei International",
     link: "https://school.triazinesoft.in/Details/donum-dei-international-school/",
-    duration: "2024 - 2026",
+    duration: "2024 Sep - 2026 Apr",
     details: (
       <div>
         Tutoring school students in computer science subjects, helping them
@@ -331,7 +330,7 @@ const HighlightItems = [
     organizedBy: "IEEE WIE of IIT",
     description:
       "Achieved Top 10 nationally in a STEM-based forensic investigation competition involving evidence analysis, complex clue discovery, and strategic logical problem-solving.",
-  },  {
+  }, {
     title: "Finalist in Beauty of Cloud 2.0",
     organizedBy: "IEEE CS Student Branch Chapter of USJ",
     description:
@@ -582,7 +581,7 @@ const IntroductionDesktop: React.FC = () => {
         viewport={{ once: true }}
         variants={fadeInVariant}
       >
-        With practical experience gained as a Software Engineer Intern, I have
+        With Industry experience gained as a Software Engineer Intern, I have
         built and deployed scalable full-stack applications, integrated AI
         capabilities, and automated cloud workflows. As an active member of the
         Rotaract IT team, I contribute to core software projects and DevOps
