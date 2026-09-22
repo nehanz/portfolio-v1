@@ -30,10 +30,10 @@ import Image from "next/image";
 
 import project1 from "@/public/images/project1.png";
 import project2 from "@/public/images/project2.png";
-import project3 from "@/public/images/project3.png";
 import project4 from "@/public/images/project4.png";
 import project5 from "@/public/images/project5.png";
 import project6 from "@/public/images/project6.png";
+import project7 from "@/public/images/project7.png";
 
 interface ProjectData {
   title: string;
@@ -56,40 +56,77 @@ interface ProjectCardProps {
 
 const PROJECT_DATA: ProjectData[] = [
   {
+    title: "Phylax",
+    description:
+      "A distributed API behavior intelligence platform that establishes behavioral baselines, detects anomalous API usage in real time, explains security risks, and provides operational analytics through an event-driven microservices architecture.",
+    techStack: ["Spring Boot", "Java", "React", "TypeScript", "Docker"],
+    gitLink: "https://github.com/nehanz/phylax",
+    category: "My Top Projects",
+    label: "Open Source",
+    duration: "2026 Aug - Present",
+    contribution: "Microservices Architecture, Full Stack Development, DevOps",
+  },
+  {
+    title: "TeaBlend AI",
+    description:
+      "An AI-powered auction platform connecting tea suppliers with buyers through intelligent matching, real-time auctions, quality verification, predictive analytics, and secure escrow transactions to drive sustainable resource trading.",
+    techStack: ["FastAPI", "Next.js", "TypeScript", "Azure", "SQLAlchemy", "Postman"],
+    gitLink: "https://github.com/nehanz/teablendai-project",
+    siteLink: "http://teablendai-project.vercel.app/",
+    category: "My Top Projects",
+    label: "Team Project",
+    duration: "2025 Sep - 2026 Aug",
+    client: "Inivos Technology (Pvt) Ltd.",
+    contribution: "Full Stack Development",
+    imageSrc: project7,
+  },
+  {
     title: "Docu",
     description:
-      "Docu is a Python tool that logs terminal commands and outputs, lets you add comments, and can mask sensitive data with docu mask. Its AI assistant can summarize sessions, explain commands, and help debug, while saving everything in organized, custom directories for easy access",
+      "Docu is a Python tool that logs terminal commands and outputs, lets you add comments, and can mask sensitive data with docu mask. Its AI assistant can summarize sessions, explain commands, and help debug, while saving everything in organized, custom directories for easy access.",
     techStack: ["Python", "Bash", "GeminiAI"],
     gitLink: "https://github.com/nehanz/Docu",
-    siteLink:
-      "https://www.linkedin.com/posts/nehanz_excited-to-announce-the-development-of-docu-activity-7385041651804729344-k1lD?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEFY3jsBsh0Wrd04OGbIJ_QOhT2o_PKe93U",
+    siteLink: "http://pypi.org/project/docu-cli/",
     category: "My Top Projects",
     label: "Individual Project",
     duration: "2025 Sep",
+    contribution: "CLI tool Development",
   },
-  {
-    title: "Portfolio Website",
-    description:
-      "A personal portfolio website built with Next.js and Tailwind CSS to showcase my projects, skills, and experience. It features a modern design, responsive layout, and smooth animations.",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
-    gitLink: "https://github.com/nehanz/portfolio-v1",
-    siteLink: "https://nehanw.vercel.app",
-    category: "My Top Projects",
-    label: "Individual Project",
-    contribution: "Frontend Development, UI/UX Design",
-    duration: "2025 Nov - 2026 Jan",
-    imageSrc: project5,
-  },
+  // {
+  //   title: "Portfolio Website",
+  //   description:
+  //     "A personal portfolio website built with Next.js and Tailwind CSS to showcase my projects, skills, and experience. It features a modern design, responsive layout, and smooth animations.",
+  //   techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
+  //   gitLink: "https://github.com/nehanz/portfolio-v1",
+  //   siteLink: "https://nehanw.vercel.app",
+  //   category: "My Top Projects",
+  //   label: "Individual Project",
+  //   contribution: "Frontend Development, UI/UX Design",
+  //   duration: "2025 Nov - 2026 Jan",
+  //   imageSrc: project5,
+  // },
   {
     title: "OpsCore",
     description:
       "Contributed to the OpsCore server migration project for the Rotaract Club, using Docker, Nginx, MySQL, and WordPress to containerize and optimize the deployment environment for better performance and maintainability.",
     techStack: ["Docker", "Nginx", "MySQL", "WordPress"],
-    category: "On going Projects",
-    duration: "2025 Sep - Present",
+    category: "Volunteer Projects",
+    duration: "2025 Sep - 2026 May",
     label: "Team Project",
     contribution: "DevOps, SRE",
     client: "Rotaract Club of University of Moratuwa",
+  },
+  {
+    title: "LinkR (Revamp)",
+    description:
+      "Developed the central membership management system with automated member tracking, admin analytics dashboards, fine-grained role-based access control (RBAC), and integrated project management features.",
+    techStack: ["Next.js", "Express.js", "TypeScript", "Prisma", "Supabase", "PostgreSQL"],
+    category: "Volunteer Projects",
+    duration: "2025 Nov - 2026 Jul",
+    label: "Team Project",
+    contribution: "Full Stack Development",
+    client: "Rotaract Club of University of Moratuwa",
+    siteLink: "https://linkr.rotaractmora.org/"
   },
   {
     title: "Are You Ready 2026",
@@ -98,9 +135,42 @@ const PROJECT_DATA: ProjectData[] = [
     techStack: ["Nextjs", "Shadcn UI", "Firebase"],
     category: "Volunteer Projects",
     siteLink: "https://areyouready.uom.lk/",
-    duration: "2025 Sep - Present",
+    duration: "2025 Sep - 2025 Dec  ",
     label: "Team Project",
     contribution: "Full Stack Development",
+  },
+  {
+    title: "Sallyport",
+    description:
+      "A lightweight, robust Go middleware designed for securing webhook endpoints against payload forgery, replay attacks, and Server-Side Request Forgery (SSRF).",
+    techStack: ["Go", "Webhooks", "Middleware"],
+    gitLink: "https://github.com/nehanz/Sallyport",
+    category: "Projects worked on",
+    label: "Individual Project",
+    duration: "2026 Sep",
+    contribution: "Security middleware Development",
+  },
+  {
+    title: "RiskAuth",
+    description:
+      "Machine learning models and pipelines for risk-based authentication, including behavioral telemetry data processing, model training, risk score evaluation, and low-latency inference services.",
+    techStack: ["Python", "Machine Learning", "Scikit-learn", "FastAPI"],
+    gitLink: "https://github.com/nehanz/riskauth-ml",
+    category: "Projects worked on",
+    label: "Individual Project",
+    duration: "2026 Feb - 2026 Mar",
+    contribution: "ML Pipeline Development",
+  },
+  {
+    title: "FileGuard",
+    description:
+      "A blockchain-based file integrity monitoring system that securely logs and verifies cryptographic file hashes on Ethereum smart contracts, enabling transparent tampering detection and proof of existence.",
+    techStack: ["Python", "Ethereum", "Web3", "Foundry", "Solidity"],
+    gitLink: "https://github.com/nehanz/file-guard",
+    category: "Projects worked on",
+    label: "Individual Project",
+    duration: "2026 June - 2026 Sep",
+    contribution: "Backend & Smart Contract Development",
   },
   {
     title: "Ecafe",
@@ -117,9 +187,9 @@ const PROJECT_DATA: ProjectData[] = [
   {
     title: "Bell1.0",
     description:
-      "Developed a mobile app using React Native and Expo to automate school bell schedules. The app allows users to set and manage daily alarms, sending push notifications to signal class transitions. Designed for simplicity and offline reliability, it operates without a backend while providing a clean and intuitive interface. Users can easily customize schedules, enable or disable specific alarms, and receive timely notifications for smooth school operations. The app emphasizes ease of use, accessibility, and dependable functionality across devices",
+      "Developed a mobile app using React Native and Expo to automate school bell schedules. The app allows users to set and manage daily alarms, sending push notifications to signal class transitions. Designed for simplicity and offline reliability, it operates without a backend while providing a clean and intuitive interface. Users can easily customize schedules, enable or disable specific alarms, and receive timely notifications for smooth school operations. The app emphasizes ease of use, accessibility, and dependable functionality across devices.",
     techStack: ["React Native", "Expo"],
-    gitLink: "https://github.com/NehanZ/Farmify",
+    gitLink: "https://github.com/nehanz/bell1.0",
     category: "Projects worked on",
     duration: "2025 Mar - 2025 Apr",
     contribution: "Mobile App Development",
@@ -130,7 +200,7 @@ const PROJECT_DATA: ProjectData[] = [
   {
     title: "Zenn Table",
     description:
-      "The Zenn Table is an automated sand plotter coffee table that combines the art of sand design with smart digital interaction. Powered by an ESP32 and a Core XY motion system, it precisely creates intricate patterns using a magnetic steel ball, while users control designs, LED effects, and colors via a touch display. Its web application enables shop assistants to send personalized messages—perfect for special occasions—while automated drawers and dynamic LED synchronization enhance both functionality and aesthetics",
+      "The Zenn Table is an automated sand plotter coffee table that combines the art of sand design with smart digital interaction. Powered by an ESP32 and a Core XY motion system, it precisely creates intricate patterns using a magnetic steel ball, while users control designs, LED effects, and colors via a touch display. Its web application enables shop assistants to send personalized messages—perfect for special occasions—while automated drawers and dynamic LED synchronization enhance both functionality and aesthetics.",
     techStack: [
       "Embedded System",
       "IOT",
@@ -145,26 +215,11 @@ const PROJECT_DATA: ProjectData[] = [
     contribution: "Embedded Systems Design, Firmware Development, Web App Development",
     label: "Team Project",
     imageSrc: project4,
-  },  
-  {
-    title: "Hotel Booking System - frontend",
-    description:
-      "Developed the frontend of a hotel booking system using React.js and Tailwind CSS. Implemented features such as room browsing, booking management, user authentication, and payment processing to provide a seamless user experience for hotel guests",
-    techStack: [
-      "React.js",
-      "Tailwind CSS",
-    ],
-    gitLink: "https://github.com/nehanz/hotel-frontend",
-    category: "Projects worked on",
-    duration: "2024 June - 2025 July",
-    contribution: "Frontend Development",
-    label: "Individual Project",
-    imageSrc: project3,
-  },  
+  },
   {
     title: "Farmify",
     description:
-      "Developed Farmify, a web platform where farmers can ask questions and experts provide answers, facilitating knowledge sharing and support in agriculture",
+      "Developed Farmify, a web platform where farmers can ask questions and experts provide answers, facilitating knowledge sharing and support in agriculture.",
     techStack: ["React", "Tailwind CSS", "Firebase"],
     gitLink: "https://github.com/NehanZ/Farmify",
     category: "Projects worked on",
@@ -369,28 +424,28 @@ const ProjectDetailsDialog: React.FC<{
         </div>
 
         {(project.gitLink || project.siteLink) && (
-            <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-white/10">
+          <div className="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-white/10">
             {project.gitLink && (
               <a
-              href={project.gitLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-[var(--color-accent2)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] text-white px-5 py-2.5 transition-colors duration-300 w-full sm:w-auto"
+                href={project.gitLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-[var(--color-accent2)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] text-white px-5 py-2.5 transition-colors duration-300 w-full sm:w-auto"
               >
-              <FaGithub /> View Code
+                <FaGithub /> View Code
               </a>
             )}
             {project.siteLink && (
               <a
-              href={project.siteLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-[var(--color-accent2)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] text-white px-5 py-2.5 transition-colors duration-300 w-full sm:w-auto"
+                href={project.siteLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 bg-[var(--color-accent2)] hover:bg-[var(--color-primary)] hover:text-[var(--color-background)] text-white px-5 py-2.5 transition-colors duration-300 w-full sm:w-auto"
               >
-              <FaExternalLinkAlt /> Live Demo
+                <FaExternalLinkAlt /> Live Demo
               </a>
             )}
-            </div>
+          </div>
         )}
       </motion.div>
     </motion.div>
@@ -414,8 +469,8 @@ const ProjectSection: React.FC<{ category: string }> = ({ category }) => {
       animate={inView ? "show" : "hidden"}
       variants={containerVariants}
     >
-      <motion.p 
-        className="text-lg md:text-2xl font-bold text-[var(--color-foreground)] mb-6" 
+      <motion.p
+        className="text-lg md:text-2xl font-bold text-[var(--color-foreground)] mb-6"
         variants={fadeInVariant}
       >
         {category}
@@ -453,14 +508,14 @@ export default function Projects() {
     >
       <div className="w-full p-8 md:p-10">
         <div className="relative">
-          <motion.section 
-            className="mb-10" 
+          <motion.section
+            className="mb-10"
             initial="hidden"
             animate="show"
             variants={containerVariants}
           >
-            <motion.h1 
-              className="text-3xl md:text-5xl font-bold text-[var(--color-primary)] mb-10 mt-3 md:mt-5" 
+            <motion.h1
+              className="text-3xl md:text-5xl font-bold text-[var(--color-primary)] mb-10 mt-3 md:mt-5"
               variants={fadeInVariant}
             >
               Projects
