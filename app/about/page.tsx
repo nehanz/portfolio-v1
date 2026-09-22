@@ -354,16 +354,30 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
   duration,
   details,
 }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <div className="pb-4 border-b border-white/10">
       {details ? (
-        <HoverCard openDelay={150} closeDelay={200}>
+        <HoverCard
+          open={isOpen}
+          onOpenChange={setIsOpen}
+          openDelay={150}
+          closeDelay={200}
+        >
           <HoverCardTrigger asChild>
-            <h3 className="text-2xl font-semibold cursor-pointer hover:opacity-80 transition-opacity">
+            <h3
+              onClick={() => setIsOpen((prev) => !prev)}
+              className="text-2xl font-semibold cursor-pointer hover:opacity-80 transition-opacity"
+            >
               {title}
             </h3>
           </HoverCardTrigger>
-          <HoverCardContent className="w-80 bg-[var(--color-accent1)] border-white/10">
+          <HoverCardContent
+            side="bottom"
+            align="start"
+            className="w-80 max-w-[calc(100vw-2.5rem)] bg-[var(--color-accent1)] border-white/10 z-50"
+          >
             <div className="space-y-1">
               <p className="text-sm text-[var(--color-foreground)]">
                 {details}
@@ -490,10 +504,15 @@ const HobbyHoverCard: React.FC<HobbyHoverCardProps> = ({
   title,
   items,
 }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
-    <HoverCard>
+    <HoverCard open={isOpen} onOpenChange={setIsOpen}>
       <HoverCardTrigger asChild>
-        <span className="relative cursor-pointer group mx-1.5">
+        <span
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="relative cursor-pointer group mx-1.5"
+        >
           {triggerText}
           <span
             className="absolute left-0 -bottom-px w-full h-px bg-current transition-all duration-700 scale-x-100 group-hover:scale-x-0 origin-left"
@@ -501,7 +520,11 @@ const HobbyHoverCard: React.FC<HobbyHoverCardProps> = ({
           />
         </span>
       </HoverCardTrigger>
-      <HoverCardContent className="w-80 bg-[var(--color-accent1)] border-white/10">
+      <HoverCardContent
+        side="bottom"
+        align="center"
+        className="w-80 max-w-[calc(100vw-2.5rem)] bg-[var(--color-accent1)] border-white/10 z-50"
+      >
         <div className="space-y-1">
           <h4 className="text-md text-[var(--color-foreground)]">{title}</h4>
           <ul className="list-disc list-inside text-xs text-[var(--color-foreground)]">
