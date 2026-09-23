@@ -108,6 +108,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  verification: {
+    google: "0mKxAplfbbwkYXRxeKXzFodRMvEXVxpcMac4JdPTI7g",
+  },
 };
 
 const jsonLd = {
